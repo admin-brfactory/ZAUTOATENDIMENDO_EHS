@@ -1,2 +1,2 @@
-# ZAUTOATENDIMENDO_EHS
+# ZAUTOATENDIMENTO_EHS
 Sistema de Senhas Auto atendimento
