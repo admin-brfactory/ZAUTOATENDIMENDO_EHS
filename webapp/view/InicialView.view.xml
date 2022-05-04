@@ -1,0 +1,23 @@
+<mvc:View controllerName="arcelor.brZAUTOATENDIMENTO_EHS.controller.InicialView" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f" xmlns:l="sap.ui.layout" xmlns:lf="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<App>
+		<pages>
+			<Page showHeader="false" class="TelaInicial">
+				<content>
+					<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="37rem">
+						<VBox justifyContent="Center">
+							<HBox>
+								<Label text="{i18n>lblSenhaaqui}" class="TextStyle"/>
+							</HBox>
+							<HBox>
+								<VBox width="14rem"/>
+								<Button text="{i18n>lblIniciar}" width="20rem" class="bottonInicial" press="onPress"/>
+							</HBox>
+						</VBox>
+					</FlexBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

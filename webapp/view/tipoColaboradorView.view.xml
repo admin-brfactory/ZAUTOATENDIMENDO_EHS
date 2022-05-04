@@ -1,0 +1,19 @@
+<mvc:View controllerName="arcelor.brZAUTOATENDIMENTO_EHS.controller.tipoColaboradorView" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f" xmlns:l="sap.ui.layout" xmlns:lf="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page showHeader="false" class="TelatipoColaboradorView">
+		<content>
+			<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="37rem">
+				<VBox justifyContent="Center">
+					<HBox>
+						<Button text="{i18n>lblSouColaboradordaArcelorMitall}" width="40rem" class="sapUiMediumMargin" press="onColaboradorPress"/>
+					</HBox>
+					<HBox>
+						<VBox/>
+						<Button text="{i18n>lblNaoSouColaboradordaArcelorMitall}" width="40rem" class="sapUiMediumMargin" press="onColaboradorPress"/>
+					</HBox>
+				</VBox>
+			</FlexBox>
+		</content>
+	</Page>
+</mvc:View>

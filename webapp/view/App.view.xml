@@ -1,0 +1,6 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+    controllerName="arcelor.brZAUTOATENDIMENTO_EHS.controller.App" xmlns:html="http://www.w3.org/1999/xhtml%22%3E">
+    <App id="app"
+         busy="{appView>/busy}"
+         busyIndicatorDelay="{appView>/delay}"/>
+</mvc:View>

@@ -1,0 +1,25 @@
+<mvc:View controllerName="arcelor.brZAUTOATENDIMENTO_EHS.controller.matriculaView" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f" xmlns:l="sap.ui.layout" xmlns:lf="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page showHeader="false" class="TelatipoColaboradorView">
+		<VBox>
+			<lf:SimpleForm>
+				<Input placeholder="{i18n>lblMatricula}" width="20rem" id="matric" liveChange="checaNumerico('matric', '8')"/>
+				<Input enabled="false" width="20rem"/>
+				<ComboBox items="" placeholder="{i18n>lbltiposdeAtendimento}" enabled="false" id="isEnabled">
+					<core:Item key="1" text="teste1"/>
+					<core:Item key="2" text="teste2"/>
+					<core:Item key="3" text="teste3"/>
+					<core:Item key="4" text="teste4"/>
+				</ComboBox>
+				<Button text="{i18n>lblConfirmar}" press="onValidaPress"/>
+			</lf:SimpleForm>
+		</VBox>
+		<VBox visible="false" id="isVisible">
+			<lf:SimpleForm>
+			<Button text="{i18n>lblCriarAtendimento}"/>
+			<Button text="{i18n>lblCancelar}"/>
+			</lf:SimpleForm>
+		</VBox>
+	</Page>
+</mvc:View>

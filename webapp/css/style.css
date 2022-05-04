@@ -1,0 +1,37 @@
+/* Enter your custom styles here */
+
+.TelaInicial{
+	background-color: #18191A !important;
+}
+
+.TelatipoColaboradorView{
+	background-color: #e3e1e1 !important;	
+}
+
+.TextStyle{
+	color: #fff700 !important;
+	font-size: 8.875rem !important;
+	font-weight: bold !important;
+}
+
+.sapMBtnInner{
+	/*height: 3rem !important;*/
+	font-size: 1rem !important;
+	/*font-family: "72","72full",Arial,Helvetica,sans-serif !important;*/
+	background-color: #ff7100 !important;
+	color: #ffffff !important;
+	border: 0.0625rem solid #ff7100 !important;
+	text-align: center !important;
+	position: center !important;
+}
+
+.bottonInicial{
+	height: 3rem !important;
+	font-size: 2rem !important;
+	font-family: "72","72full",Arial,Helvetica,sans-serif !important;
+	background-color: #ff7100 !important;
+	color: #ffffff !important;
+	border: 0.0625rem #ff7100 !important;
+	text-align: center !important;
+	position: center !important;
+}
