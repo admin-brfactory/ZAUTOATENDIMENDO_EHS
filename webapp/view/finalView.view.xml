@@ -11,23 +11,23 @@
 			<VBox class="sapUiLargeMargin">
 				<HBox>
 					<Label
-						text="Seu atendimento ja foi registrado."/>
+						text="{i18n>frase1}"/>
 				</HBox>
 				<HBox height="0.75rem"/>
 				<HBox>
-					<Label text="Aguarde sentado na recepção interna ou externa até que seu"/>
+					<Label text="{i18n>frase2}"/>
 				</HBox>
 				<HBox>
-					<Label text="nome seja chamado na TV de atendimento."/>
+					<Label text="{i18n>frase3}"/>
 				</HBox>
 				<HBox height="0.75rem"/>
 				<HBox>
-					<Label text="Evite aglomerações e mantenha distancimaento."/>
+					<Label text="{i18n>frase4}"/>
 				</HBox>
 			</VBox>
 			<HBox height="3rem"/>
 			<VBox alignItems="Center" justifyContent="End">
-			<Button text="{i18n>lblOK}" width="20rem" class="TextStyle" change="limpaTimeOut" press="onPress"/>
+			<Button text="{i18n>lblOK}" width="20rem" class="TextStyle" press="onPress"/>
 			</VBox>
 		</content>
 	</Page>

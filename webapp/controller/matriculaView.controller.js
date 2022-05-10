@@ -8,7 +8,7 @@ sap.ui.define([
 ], function(BaseController, JSONModel, MessageBox, Filter, FilterOperator, formatter) {
 	"use strict";
 
-	var TimeOut = "";
+	var TimeOut = 0;
 
 	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.matriculaView", {
 
@@ -28,11 +28,18 @@ sap.ui.define([
 
 			TimeOut = setTimeout(function() {
 				oRouter.navTo("inicial_view");
-			}, 50000);
+			}, 60000);
+		},
+
+		limpaTimeOut: function() {
+			clearTimeout(TimeOut);
+			TimeOut = 0;
+			this.initTimeOut();
 		},
 
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
+			this.limpaTimeOut();
 			oRouter.navTo("matriculaView");
 		},
 
@@ -44,8 +51,9 @@ sap.ui.define([
 			var CriarArcelo = this.getView().byId("CriarArcel");
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/Pernr(Usuario= '" + valorMatricula + "')";
-			// var aFilters = [];
 			var a = false;
+			
+			this.limpaTimeOut();
 
 			if (valorMatricula == "") {
 				MessageBox.error("Favor preencher uma Matricula!");
@@ -108,15 +116,11 @@ sap.ui.define([
 			this.getView().byId("matric").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+			this.limpaTimeOut();
 
 			isEnabled.setEnabled(false);
 			CriarArcelo.setEnabled(false);
 
-		},
-
-		limpaTimeOut: function() {
-			clearTimeout(TimeOut);
-			this.initTimeOut();
 		},
 
 		onCancelar: function(oEvent) {
@@ -126,7 +130,9 @@ sap.ui.define([
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var isEnabled = this.getView().byId("comb");
 
-			this.getView().byId("matric", "nome").setValue("");
+			this.limpaTimeOut();
+			this.getView().byId( "nome").setValue("");
+			this.getView().byId("matric").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
 
 			isEnabled.setEnabled(false);
@@ -146,7 +152,6 @@ sap.ui.define([
 			if (regExp.test(sValue) || format.test(sValue)) {
 				this.getView().byId(sID).setValue(sValue.substring(0, sValue.length - 1));
 			}
-			this.initTimeOut();
 		},
 
 		limpaCampos: function() {
@@ -154,7 +159,6 @@ sap.ui.define([
 			this.getView().byId("matric").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
-			this.initTimeOut();
 		},
 
 		onExit: function() {

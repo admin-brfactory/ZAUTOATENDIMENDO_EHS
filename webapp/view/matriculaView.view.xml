@@ -11,7 +11,7 @@
 		<Label text="{i18n>lblMatricula}" class="sapUiSmallMargin"/>
 		<l:Grid>
 			<HBox alignItems="Center">
-				<Input type="Number" placeholder="{i18n>lblMatricula}" width="14rem" id="matric" liveChange="checaNumerico('matric', '8'),limpaTimeOut"
+				<Input type="Number" placeholder="{i18n>lblMatricula}" width="14rem" id="matric" liveChange="checaNumerico('matric', '8')"
 					class="inputMatricula"/>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>
@@ -22,13 +22,13 @@
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
 				<VBox width="0.5rem"/>
-				<Button text="{i18n>lblConfirmar}" width="12rem" press="onValidaPress" class="bottonconfirmarmatri" change="limpaTimeOut"/>
+				<Button text="{i18n>lblConfirmar}" width="12rem" press="onValidaPress" class="bottonconfirmarmatri"/>
 			</HBox>
 		</l:Grid>
 		<Label text="{i18n>lblaAtendimento}" class="sapUiSmallMargin"/>
 		<l:Grid>
 			<HBox alignItems="Center">
-				<ComboBox items="" placeholder="{i18n>lbltiposdeAtendimento}" width="30rem" enabled="false" id="comb" class="inputSelected" change="limpaTimeOut">
+				<ComboBox items="" placeholder="{i18n>lbltiposdeAtendimento}" width="30rem" enabled="false" id="comb" class="inputSelected">
 					<core:Item key="0" text=""/>
 					<core:Item key="1" text="teste1"/>
 					<core:Item key="2" text="teste2"/>
@@ -39,14 +39,13 @@
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
 				<VBox width="0.5rem"/>
-				<Button text="{i18n>lblCriarAtendimento}" class="bottonCriarAtend" width="30rem" press="onCriarAtendiPress" id="CriarArcel" change="limpaTimeOut"
-					enabled="false"/>
+				<Button text="{i18n>lblCriarAtendimento}" class="bottonCriarAtend" width="30rem" press="onCriarAtendiPress" id="CriarArcel" enabled="false"/>
 			</HBox>
 		</l:Grid>
 		<footer class="footer">
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button text="{i18n>lblCancelar}" class="bottonCancelar" press="onCancelar" id="ArclCancelar" width="31rem" change="limpaTimeOut"/>
+				<Button text="{i18n>lblCancelar}" class="bottonCancelar" press="onCancelar" id="ArclCancelar" width="31rem"/>
 			</OverflowToolbar>
 		</footer>
 	</Page>

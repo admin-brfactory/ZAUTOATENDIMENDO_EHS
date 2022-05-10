@@ -6,7 +6,7 @@ sap.ui.define([
 ], function(BaseController, JSONModel, MessageBox, formatter) {
 	"use strict";
 
-	var TimeOut = "";
+	var TimeOut = 0;
 
 	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.matriculaNaoColaborador", {
 
@@ -15,9 +15,9 @@ sap.ui.define([
 				img: img()[0].img
 
 			});
-
-			this.initTimeOut();
+			
 			this.getView().setModel(oViewModel, "cpfModel");
+			this.initTimeOut();
 
 		},
 
@@ -26,16 +26,24 @@ sap.ui.define([
 
 			TimeOut = setTimeout(function() {
 				oRouter.navTo("inicial_view");
-			}, 50000);
+			}, 60000);
+		},
+
+		limpaTimeOut: function() {
+			clearTimeout(TimeOut);
+			TimeOut = 0;
+			
+			this.initTimeOut();
 		},
 
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
+			this.limpaTimeOut();
 			oRouter.navTo("matriculaNaoColaborador");
 		},
 
 		onValidaPress: function(oEvent) {
-			var oViewModel = this.getView().getModel("oViewModel");
+			var oViewModel = this.getView().getModel("cpfModel");
 			var oModel = this.getOwnerComponent().getModel();
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
@@ -44,6 +52,8 @@ sap.ui.define([
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
 			var a = false;
+
+			this.limpaTimeOut();
 
 			if (valorCPF == "" || Nome == "") {
 				MessageBox.error("Favor preencher todos os campos!");
@@ -71,18 +81,24 @@ sap.ui.define([
 		},
 
 		onCriarAtendiPress: function(oEvent) {
-			var oViewModel = this.getView().getModel("oViewModel");
+			var oViewModel = this.getView().getModel("cpfModel");
 			var oModel = this.getOwnerComponent().getModel();
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
-			var Data = new Date();
 			var ComboBox = this.getView().byId("comb").getValue();
 			var CriarArcelo = this.getView().byId("CriarArcel");
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
-
 			var isEnabled = this.getView().byId("comb");
 			var oRouter = this.getOwnerComponent().getRouter();
+
+			this.limpaTimeOut();
+			this.getView().byId("nome").setValue("");
+			this.getView().byId("CPF").setValue("");
+			this.getView().byId("comb").setSelectedKey("");
+
+			CriarArcelo.setEnabled(false);
+			isEnabled.setEnabled(false);
 
 			if (valorCPF == "" || ComboBox == "" || Nome == "") {
 				MessageBox.error("Favor preencher todos os campos!");
@@ -121,27 +137,16 @@ sap.ui.define([
 
 			}
 
-			this.getView().byId("nome").setValue("");
-			this.getView().byId("CPF").setValue("");
-			this.getView().byId("comb").setSelectedKey("");
-
-			CriarArcelo.setEnabled(false);
-			isEnabled.setEnabled(false);
-
-		},
-
-		limpaTimeOut: function() {
-			clearTimeout(TimeOut);
-			this.initTimeOut();
 		},
 
 		onCancelar: function(oEvent) {
-			var oViewModel = this.getView().getModel("oViewModel");
+			var oViewModel = this.getView().getModel("cpfModel");
 			var oRouter = this.getOwnerComponent().getRouter();
 			var CriarArcelo = this.getView().byId("CriarArcel");
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var isEnabled = this.getView().byId("comb");
 
+			this.limpaTimeOut();
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("CPF").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
@@ -163,7 +168,6 @@ sap.ui.define([
 			if (regExp.test(sValue) || format.test(sValue)) {
 				this.getView().byId(sID).setValue(sValue.substring(0, sValue.length - 1));
 			}
-			this.initTimeOut();
 		},
 
 		checaNome: function(sID, sLength) {
@@ -178,15 +182,13 @@ sap.ui.define([
 			if (regExp.test(sValue) || format.test(sValue)) {
 				this.getView().byId(sID).setValue(sValue.substring(0, sValue.length - 1));
 			}
-			this.initTimeOut();
 		},
 
 		limpaCampos: function() {
-			var oViewModel = this.getView().getModel("oViewModel");
+			var oViewModel = this.getView().getModel("cpfModel");
 			this.getView().byId("matric").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
-			this.initTimeOut();
 		},
 
 		onExit: function() {

@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(BaseController, JSONModel, MessageBox) {
 	"use strict";
 
-	var TimeOut = "";
+	var TimeOut = 0;
 
 	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.finalView", {
 		
@@ -13,6 +13,8 @@ sap.ui.define([
 			var oViewModel = new JSONModel({
 
 			});
+			
+			this.getView().setModel(oViewModel, "finalModel");
 			this.initTimeOut();
 		},
 		initTimeOut: function() {
@@ -20,16 +22,18 @@ sap.ui.define([
 
 			TimeOut = setTimeout(function() {
 				oRouter.navTo("inicial_view");
-			}, 50000);
+			}, 60000);
 		},
 
 		limpaTimeOut: function() {
 			clearTimeout(TimeOut);
+			TimeOut = 0;
 			this.initTimeOut();
 		},
 
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
+			this.limpaTimeOut();
 			oRouter.navTo("inicial_view");
 		}
 

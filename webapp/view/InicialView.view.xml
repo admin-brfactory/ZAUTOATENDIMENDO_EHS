@@ -12,7 +12,7 @@
 							</HBox>
 							<HBox>
 								<VBox width="14rem"/>
-								<Button text="{i18n>lblIniciar}" width="25rem"  change="limpaTimeOut" class="bottonInicial" press="onPress"/>
+								<Button text="{i18n>lblIniciar}" width="25rem" class="bottonInicial" press="onPress"/>
 							</HBox>
 						</VBox>
 					</FlexBox>
