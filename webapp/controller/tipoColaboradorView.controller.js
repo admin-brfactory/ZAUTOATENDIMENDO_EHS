@@ -48,13 +48,6 @@ sap.ui.define([
 			oRouter.navTo("matricula_nao_colaborador");
 		},
 
-		limpaCampos: function() {
-			var oViewModel = this.getView().getModel("ColaboradorModel");
-			this.getView().byId("nome").setValue("");
-			this.getView().byId("matric").setValue("");
-			this.getView().byId("comb").setSelectedKey("");
-		},
-
 		onExit: function() {
 			clearTimeout(TimeOut);
 			this.limpaCampos();

@@ -170,7 +170,6 @@ sap.ui.define([
 			var oViewModel = this.getView().getModel("cpfModel");
 			var oModel = this.getOwnerComponent().getModel();
 			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
 			var isEnabled = this.getView().byId("comb");
 
 			this.getView().byId("CPF").setValue("");
