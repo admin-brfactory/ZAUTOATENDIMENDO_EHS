@@ -1,37 +1,271 @@
 /* Enter your custom styles here */
 
-.TelaInicial{
-	background-color: #18191A !important;
+.TelaInicial {
+    background-color: #18191A !important;
 }
 
-.TelatipoColaboradorView{
-	background-color: #e3e1e1 !important;	
+.TelatipoColaboradorView {
+    background-color: ##ffffff !important;
 }
 
-.TextStyle{
-	color: #fff700 !important;
-	font-size: 8.875rem !important;
-	font-weight: bold !important;
+.TextStyle {
+    height: 5rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
 }
 
-.sapMBtnInner{
-	/*height: 3rem !important;*/
-	font-size: 1rem !important;
-	/*font-family: "72","72full",Arial,Helvetica,sans-serif !important;*/
-	background-color: #ff7100 !important;
-	color: #ffffff !important;
-	border: 0.0625rem solid #ff7100 !important;
-	text-align: center !important;
-	position: center !important;
+.sapMBtnInner {
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem solid #ff7100 !important;
+    border-radius: 0.5rem !important;
 }
 
-.bottonInicial{
-	height: 3rem !important;
-	font-size: 2rem !important;
-	font-family: "72","72full",Arial,Helvetica,sans-serif !important;
-	background-color: #ff7100 !important;
-	color: #ffffff !important;
-	border: 0.0625rem #ff7100 !important;
-	text-align: center !important;
-	position: center !important;
+.bottonInicial {
+    height: 5rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+}
+
+.bottonColaborador {
+    height: 6rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+}
+
+.bottonNaoColaborador {
+    height: 6rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+}
+
+.bottonCancelar {
+    height: 3rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+}
+
+.bottonCriarAtend {
+    height: 4.8rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+}
+
+.bottonconfirmarmatri {
+    height: 4.8rem !important;
+    font-size: 3rem !important;
+    background-color: #ff7100 !important;
+    color: #ffffff !important;
+    border: 0.0625rem #ff7100 !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+    line-height: 2.5rem !important;
+}
+
+.inputMatricula {
+    height: 4.8rem !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+    border: 0.0625rem #ff7100 !important;
+    line-height: 2.5rem !important;
+    text-align: center !important;
+    position: center !important;
+}
+
+.inputSelected {
+    height: 4.7rem !important;
+    text-align: center !important;
+    position: center !important;
+    border-radius: 0.5rem !important;
+    border: 0.0625rem #ff7100 !important;
+    line-height: 2.5rem !important;
+}
+
+.sapMInputBaseIcon {
+    width: 2.125rem;
+    min-width: 2.125rem;
+    height: 100%;
+    line-height: 4rem;
+    cursor: pointer;
+    background: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sapMInputBaseInner::placeholder {
+    font-size: 1.3rem;
+}
+
+.lblConclu {
+    text-align: left;
+    color: white;
+}
+
+.sapMInputBaseIcon:active {
+    background-color: #ff7100;
+    color: #fff;
+}
+
+.sapMInputBaseIcon:hover {
+    background: #ff7100;
+}
+
+.inputRow {
+    background: #ff7100 !important;
+}
+
+.LabelAuto {
+    font-size: 3rem !important;
+}
+
+.sapMBtnInner {
+    font-size: 2rem;
+}
+
+.sapMInputBaseInner {
+    font-size: 1.25rem;
+}
+
+.sapMTBStandard {
+    border-bottom: 1rem solid #ff7100;
+}
+
+.sapMTB {
+    height: 4.75rem;
+    padding: 0 0.5rem;
+}
+
+.finalOver {
+    background: #ff7100;
+}
+
+.sapMSuggestionsPopover .sapMSLITitleOnly {
+    font-size: 1.5rem;
+}
+
+.sapMLabel {
+    font-size: 2rem;
+}
+
+.sapMDialog.sapMMessageDialog {
+    font-size: 6.875rem;
+}
+
+.sapMText {
+    font-size: 1.5rem;
+}
+
+.sapMBarPH {
+    display: inline-block;
+    height: 3rem;
+    vertical-align: middle;
+}
+
+.sapMBar {
+    height: 3.75rem;
+    line-height: 5.75rem;
+}
+
+.sapMLabel {
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+    font-weight: 1000;
+}
+
+.sapMIBar-CTX.sapMFooter-CTX {
+    /*background-color: #e3e1e1*/
+    border-top: 1px solid #ff7100;
+}
+
+.sapMTB.sapMTBNoBorders {
+}
+
+
+.sapUiFormTitleH4 {
+    font-size: 2.5rem;
+}
+
+.sapUiForm .sapUiFormTitle {
+    border-width: 1px;
+    border-color: #d9d9d9;
+    height: 3.75rem;
+}
+
+.footer {
+    background: #000000;
+    opacity: 0.6;
+}
+
+.finalbutton {
+    height: 3rem !important;
+}
+
+.breathe bdi {
+    animation-name: breathe !important;
+    animation-duration: 2s !important;
+    animation-timing-function: ease-in-out !important;
+    animation-delay: 0 !important;
+    animation-iteration-count: infinite !important;
+    animation-direction: alternate !important;
+    font-size: 8.875rem !important;
+}
+
+@keyframes breathe {
+    0% {
+        font-size: 60px;
+        color: rgb(219, 117, 13);
+    }
+    50% {
+        font-size: 57px;
+        color: #ccff00;
+    }
+    100% {
+        font-size: 60px;
+        color: rgb(219, 117, 13);
+    }
+}
+
+.sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper) {
+    border-radius: 0.5rem;
+}
+
+.sapUiForm .sapUiFormTitle {
+    border-width: 1px;
+    border-color: #d9d9d9;
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+    height: 3.75rem;
+    line-height: 4rem;
 }

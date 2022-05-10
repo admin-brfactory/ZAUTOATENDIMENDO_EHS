@@ -2,15 +2,13 @@ sap.ui.define([
 	"arcelor/brZAUTOATENDIMENTO_EHS/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"arcelor/brZAUTOATENDIMENTO_EHS/img",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(BaseController, JSONModel, MessageBox, Filter, FilterOperator, formatter) {
+	"arcelor/brZAUTOATENDIMENTO_EHS/img"
+], function(BaseController, JSONModel, MessageBox, formatter) {
 	"use strict";
 
 	var TimeOut = "";
 
-	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.matriculaView", {
+	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.matriculaNaoColaborador", {
 
 		onInit: function() {
 			var oViewModel = new JSONModel({
@@ -18,8 +16,8 @@ sap.ui.define([
 
 			});
 
-			this.getView().setModel(oViewModel, "matriculaModel");
 			this.initTimeOut();
+			this.getView().setModel(oViewModel, "cpfModel");
 
 		},
 
@@ -33,32 +31,28 @@ sap.ui.define([
 
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("matriculaView");
+			oRouter.navTo("matriculaNaoColaborador");
 		},
 
 		onValidaPress: function(oEvent) {
-			var oViewModel = this.getView().getModel("matriculaModel");
+			var oViewModel = this.getView().getModel("oViewModel");
 			var oModel = this.getOwnerComponent().getModel();
-			var valorMatricula = this.getView().byId("matric").getValue();
+			var valorCPF = this.getView().byId("CPF").getValue();
+			var Nome = this.getView().byId("nome").getValue();
 			var isEnabled = this.getView().byId("comb");
 			var CriarArcelo = this.getView().byId("CriarArcel");
 			var ArclCancela = this.getView().byId("ArclCancelar");
-			var sUrl = "/Pernr(Usuario= '" + valorMatricula + "')";
-			// var aFilters = [];
+			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
 			var a = false;
 
-			if (valorMatricula == "") {
-				MessageBox.error("Favor preencher uma Matricula!");
+			if (valorCPF == "" || Nome == "") {
+				MessageBox.error("Favor preencher todos os campos!");
 				return;
 			}
 
-			// var aFilters = [
-			// 	new Filter("Usuario", FilterOperator.EQ, valorMatricula)
-			// ];
-
 			sap.ui.core.BusyIndicator.show();
-			oModel.read("/Pernr", {
-				// filters: aFilters,
+			oModel.read(sUrl, {
+
 				success: function(oData) {
 					sap.ui.core.BusyIndicator.hide();
 					console.log(oData);
@@ -68,29 +62,34 @@ sap.ui.define([
 					sap.ui.core.BusyIndicator.hide();
 					console.log(oError);
 				}.bind(this)
+
 			});
 
-			isEnabled.setEnabled(!a);
 			CriarArcelo.setEnabled(!a);
+			isEnabled.setEnabled(!a);
 
 		},
 
 		onCriarAtendiPress: function(oEvent) {
 			var oViewModel = this.getView().getModel("oViewModel");
-			var valorMatricula = this.getView().byId("matric").getValue();
+			var oModel = this.getOwnerComponent().getModel();
+			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
+			var Data = new Date();
 			var ComboBox = this.getView().byId("comb").getValue();
-			var oRouter = this.getOwnerComponent().getRouter();
-			var isEnabled = this.getView().byId("comb");
 			var CriarArcelo = this.getView().byId("CriarArcel");
 			var ArclCancela = this.getView().byId("ArclCancelar");
+			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
 
-			if (valorMatricula == "" || ComboBox == "") {
-				MessageBox.error("Favor preencher todos os campos !");
+			var isEnabled = this.getView().byId("comb");
+			var oRouter = this.getOwnerComponent().getRouter();
+
+			if (valorCPF == "" || ComboBox == "" || Nome == "") {
+				MessageBox.error("Favor preencher todos os campos!");
 				return;
 			}
 
-			if (valorMatricula != "" || ComboBox != "") {
+			if (valorCPF != "" || ComboBox != "" || Nome != "") {
 				MessageBox.confirm("Confirme Atendimento", {
 					title: "Prezado",
 					actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
@@ -103,14 +102,31 @@ sap.ui.define([
 						}
 					}
 				});
+				if (Data) {
+
+				}
+				sap.ui.core.BusyIndicator.show();
+				oModel.read(sUrl, {
+
+					success: function(oData) {
+						sap.ui.core.BusyIndicator.hide();
+						console.log(oData);
+					}.bind(this),
+
+					error: function(oError) {
+						sap.ui.core.BusyIndicator.hide();
+						console.log(oError);
+					}.bind(this)
+				});
+
 			}
 
-			this.getView().byId("matric").setValue("");
 			this.getView().byId("nome").setValue("");
+			this.getView().byId("CPF").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
 
-			isEnabled.setEnabled(false);
 			CriarArcelo.setEnabled(false);
+			isEnabled.setEnabled(false);
 
 		},
 
@@ -126,16 +142,32 @@ sap.ui.define([
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var isEnabled = this.getView().byId("comb");
 
-			this.getView().byId("matric", "nome").setValue("");
+			this.getView().byId("nome").setValue("");
+			this.getView().byId("CPF").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
 
-			isEnabled.setEnabled(false);
 			CriarArcelo.setEnabled(false);
+			isEnabled.setEnabled(false);
 			oRouter.navTo("inicial_view");
 		},
 
 		checaNumerico: function(sID, sLength) {
 			var regExp = /[a-zA-Z]/g;
+			var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?°¨¨ºª₢£¢¬§`~´çÇ]+/;
+			var sValue = this.getView().byId(sID).getValue();
+
+			if (sLength) {
+				this.getView().byId(sID).setValue(sValue.substr(0, sLength));
+			}
+
+			if (regExp.test(sValue) || format.test(sValue)) {
+				this.getView().byId(sID).setValue(sValue.substring(0, sValue.length - 1));
+			}
+			this.initTimeOut();
+		},
+
+		checaNome: function(sID, sLength) {
+			var regExp = /[0-9]/g;
 			var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?°¨¨ºª₢£¢¬§`~´çÇ]+/;
 			var sValue = this.getView().byId(sID).getValue();
 

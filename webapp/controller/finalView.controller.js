@@ -7,8 +7,8 @@ sap.ui.define([
 
 	var TimeOut = "";
 
-	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.InicialView", {
-
+	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.finalView", {
+		
 		onInit: function() {
 			var oViewModel = new JSONModel({
 
@@ -27,15 +27,11 @@ sap.ui.define([
 			clearTimeout(TimeOut);
 			this.initTimeOut();
 		},
+
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			var start = new Date();
-			oRouter.navTo("tipo_colaborador_view");
-		},
-
-		onPress1: function(oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("InicialView");
+			oRouter.navTo("inicial_view");
 		}
+
 	});
 });

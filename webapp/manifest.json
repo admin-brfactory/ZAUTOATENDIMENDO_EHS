@@ -10,11 +10,20 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZPORTAL_EHS_SRV": {
+				"uri": "/sap/opu/odata/sap/ZPORTAL_EHS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -33,26 +42,26 @@
 		"supportedThemes": [
 			"sap_hcb",
 			"sap_belize"
-
 		]
 	},
-
 	"sap.ui5": {
 		"rootView": {
 			"viewName": "arcelor.brZAUTOATENDIMENTO_EHS.view.App",
 			"type": "XML",
 			"async": true,
-            "id": "app"
+			"height": "100%",
+			"displayBlock": true,
+			"id": "app"
 		},
 		"dependencies": {
 			"minUI5Version": "1.30.0",
 			"libs": {
-				"sap.ui.core": {},
+				"sap.collaboration": {},
 				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.ui.core": {},
 				"sap.ui.layout": {},
 				"sap.ushell": {},
-				"sap.collaboration": {},
-				"sap.ui.comp": {},
 				"sap.uxap": {}
 			}
 		},
@@ -66,12 +75,24 @@
 				"settings": {
 					"bundleName": "arcelor.brZAUTOATENDIMENTO_EHS.i18n.i18n"
 				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZPORTAL_EHS_SRV",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -83,23 +104,43 @@
 				"async": true,
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "inicial_view",
-				"target": ["InicialView"]
-			}, {
-				"pattern": "tipoColaboradorView",
-				"name": "tipo_colaborador_view",
-				"target": ["tipoColaboradorView"]
-			},
-			{	"pattern": "matriculaView",
-				"name": "matricula_view",
-				"target": ["matriculaView"]
-			},{
+			"routes": [
+				{
+					"pattern": "",
+					"name": "inicial_view",
+					"target": [
+						"InicialView"
+					]
+				},
+				{
+					"pattern": "tipoColaboradorView",
+					"name": "tipo_colaborador_view",
+					"target": [
+						"tipoColaboradorView"
+					]
+				},
+				{
+					"pattern": "matriculaView",
+					"name": "matricula_view",
+					"target": [
+						"matriculaView"
+					]
+				},
+				{
 					"pattern": "finalView",
-				"name": "final_view",
-				"target": ["finalView"]
-			}],
+					"name": "final_view",
+					"target": [
+						"finalView"
+					]
+				},
+				{
+					"pattern": "matriculaNaoColaborador",
+					"name": "matricula_nao_colaborador",
+					"target": [
+						"matriculaNaoColaborador"
+					]
+				}
+			],
 			"targets": {
 				"InicialView": {
 					"viewId": "idInicialView",
@@ -122,6 +163,12 @@
 				"finalView": {
 					"viewId": "idfinalView",
 					"viewName": "finalView",
+					"clearControlAggregation": false,
+					"viewType": "XML"
+				},
+				"matriculaNaoColaborador": {
+					"viewId": "idmatriculaNaoColaborador",
+					"viewName": "matriculaNaoColaborador",
 					"clearControlAggregation": false,
 					"viewType": "XML"
 				}

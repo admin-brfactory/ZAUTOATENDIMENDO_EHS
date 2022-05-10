@@ -1,0 +1,590 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPORTAL_EHS_SRV" xml:lang="pt" sap:schema-version="1">
+            <EntityType Name="UserList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Usuario"/>
+                </Key>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Usuário" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="prioridade" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prioridade"/>
+                </Key>
+                <Property Name="Prioridade" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Prioridade" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PrioridadeDesc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Descrição Prioridade" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst097" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Cpf"/>
+                </Key>
+                <Property Name="Cpf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Código do Atendido" sap:updatable="false"/>
+                <Property Name="Candidato" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Empregado/Candidato?"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº pessoal"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome completo"/>
+                <Property Name="DtNasc" Type="Edm.String" sap:unicode="false" sap:label="Data nasc."/>
+                <Property Name="Sexo" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Sexo"/>
+                <Property Name="Documento" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Documnto"/>
+                <Property Name="Telefone" Type="Edm.String" Nullable="false" MaxLength="14" sap:unicode="false" sap:label="Nº telefone"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Email"/>
+                <Property Name="Logradouro" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Logradouro"/>
+                <Property Name="Numero" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Número"/>
+                <Property Name="Complemento" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Complemento"/>
+                <Property Name="Bairro" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Bairro"/>
+                <Property Name="Cep" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Código postal"/>
+                <Property Name="Cidade" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Cidade"/>
+                <Property Name="Estado" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Região"/>
+                <Property Name="Pais" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="País"/>
+                <Property Name="EmpresaLifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Empresa"/>
+                <Property Name="EmpresaNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome Empresa"/>
+                <Property Name="EmpresaCnpj" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="CNPJ Empresa"/>
+            </EntityType>
+            <EntityType Name="zgeehst096" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Atend"/>
+                </Key>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Atendimento" sap:updatable="false"/>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" MaxLength="17" sap:unicode="false" sap:label="Tipo de Atendimento"/>
+                <Property Name="TipoAtendEcc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tipo Atendimento (ECC)"/>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico"/>
+                <Property Name="AtendidoCpf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Código do Atendido"/>
+                <Property Name="AtendidoCandidato" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Empregado/Candidato"/>
+                <Property Name="AtendidoPn" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº Pessoal  Atendido"/>
+                <Property Name="AtendPn" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº Pessoal Atendente"/>
+                <Property Name="InicioDatum" Type="Edm.String" sap:unicode="false" sap:label="Data de início"/>
+                <Property Name="InicioUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de início"/>
+                <Property Name="FimDatum" Type="Edm.String" sap:unicode="false" sap:label="Data de Fim"/>
+                <Property Name="FimUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de fim"/>
+                <Property Name="InicioDatumReal" Type="Edm.String" sap:unicode="false" sap:label="Data de Iníco"/>
+                <Property Name="InicioUzeitReal" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de Início"/>
+                <Property Name="FimDatumReal" Type="Edm.String" sap:unicode="false" sap:label="Data de Fim"/>
+                <Property Name="FimUzeitReal" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de Fim"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status"/>
+                <Property Name="Atividade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Atividade"/>
+                <Property Name="AtendidoNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome Atendido" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtendDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição do Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtendEccDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição do Tipo de Atendimento/Agenda SAP" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome Atendente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição do Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoAtend" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração do Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoIdeal" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração Ideal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoBom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração Bom" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SrvNumber" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Serviço Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusColorType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status da Cor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst098" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Atend"/>
+                    <PropertyRef Name="Especialidade"/>
+                    <PropertyRef Name="Predecessor"/>
+                </Key>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Atendimento" sap:updatable="false"/>
+                <Property Name="Especialidade" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Especialidade" sap:updatable="false"/>
+                <Property Name="Predecessor" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Espec. Predecessora"/>
+                <Property Name="Especialista" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Especialista"/>
+                <Property Name="Sala" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Local Atendimento"/>
+                <Property Name="InicioDatum" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data de início"/>
+                <Property Name="InicioUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de início"/>
+                <Property Name="FimDatum" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data de fim"/>
+                <Property Name="FimUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de fim"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:updatable="false"/>
+                <Property Name="Observacao" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Observação" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prioridade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Prioridade" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EspecialistaProgramado" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Especialista programado" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChamadaDatum" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data da chamada" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChamadaUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora da chamada" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EspecialistaNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome do Especialista" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EspecialidadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Especialidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PredecessorDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Predecessor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição do Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PrioridadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição da Prioridade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoAtend" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração do Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoIdeal" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração Ideal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoBom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração Bom" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusColorType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status da Cor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NomeEmpregado" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nome do Empregado" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehse096097" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Atend"/>
+                    <PropertyRef Name="Cpf"/>
+                </Key>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Atendimento" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tipo de Atendimento" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TipoAtendEcc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ID objeto" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Médico" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AtendidoCpf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cpf do Atendido" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AtendidoCandidato" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="É Condidato?" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AtendidoPn" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nº Pessoal  Atendido" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AtendPn" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nº Pessoal Atendente" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InicioDatum" Type="Edm.String" sap:unicode="false" sap:label="Data prev. de início" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InicioUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora prev. de início" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FimDatum" Type="Edm.String" sap:unicode="false" sap:label="Data prev. de Fim" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FimUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora prev. de fim" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InicioDatumReal" Type="Edm.String" sap:unicode="false" sap:label="Data de início" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InicioUzeitReal" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de início" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FimDatumReal" Type="Edm.String" sap:unicode="false" sap:label="Data de Fim" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FimUzeitReal" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de fim" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cpf" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cpf do Atendido" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Candidato" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="É Condidato?" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nº Pessoal  Atendido" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nome completo" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DtNasc" Type="Edm.String" sap:unicode="false" sap:label="Data nasc." sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sexo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sexo" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Documento" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Documnto" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Telefone" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nº telefone" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Email" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Logradouro" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Logradouro" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Numero" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Número" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Complemento" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Complemento" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bairro" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Bairro" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cep" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Código postal" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cidade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cidade" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Estado" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Região" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pais" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="País" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmpresaLifnr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fornecedor" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmpresaNome" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Empresa" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmpresaCnpj" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CNPJ" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RETORNO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mensagem de retorno" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TpAtendECC" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TpAtend"/>
+                </Key>
+                <Property Name="TpAtend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Atendimento/Agenda SAP" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TpAtendDesc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Descrição Atendimento/Agenda SAP" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="LoginEspecialista" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ESPECIALISTA"/>
+                    <PropertyRef Name="DATA"/>
+                    <PropertyRef Name="HORA"/>
+                </Key>
+                <Property Name="ESPECIALISTA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Especialista" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CENTROMEDICO" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SHORT" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Abrev.objeto" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="STEXT" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ESPECIALIDADE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Especialidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ESPECIALIDADEDESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="EspecialidadeDesc" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="MAXCHAMADAS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nº máximo de chamadas simultâneas" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DATA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="HORA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LOCAL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Local" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="LoginCentroMedico" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="USUARIO"/>
+                    <PropertyRef Name="DATA"/>
+                    <PropertyRef Name="HORA"/>
+                </Key>
+                <Property Name="USUARIO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Especialista" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CENTROMEDICO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DATA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="HORA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="STEXT" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SHORT" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Abrev.objeto" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ChamadaMonitor" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                    <PropertyRef Name="Atend"/>
+                    <PropertyRef Name="Data"/>
+                    <PropertyRef Name="Hora"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CPF" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CPF" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Candidato" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Candidato?" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Matricula" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Matrícula" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Especialidade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Especialidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EspecialidadeDesc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descrição da Especialidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Data" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Hora" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Prioridade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Prioridade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Local" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Local" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Concluida" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Chamada concluída no monitor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="QtdeEtapas" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Quantidade total de etapas" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusDesc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descrição do Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtendDesc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descrição do Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Progresso" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Progressão do Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst077" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Especialidade"/>
+                </Key>
+                <Property Name="Especialidade" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Especialidade" sap:updatable="false"/>
+                <Property Name="EspecialidadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nome Especialidade"/>
+                <Property Name="MaxChamadas" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Nº máximo de chamadas simultâneas"/>
+            </EntityType>
+            <EntityType Name="zgeehst078" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoAcesso"/>
+                </Key>
+                <Property Name="TipoAcesso" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Nível de Acesso" sap:updatable="false"/>
+                <Property Name="TipoAcessoDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nome Nível de Acesso"/>
+            </EntityType>
+            <EntityType Name="zgeehst079" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Usuario"/>
+                </Key>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Usuário" sap:updatable="false"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Nome Usuário" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº pessoal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-mail" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Cpf" Type="Edm.String" Nullable="false" MaxLength="14" sap:unicode="false" sap:label="CPF" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst080" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoAtend"/>
+                    <PropertyRef Name="Begda"/>
+                </Key>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" MaxLength="17" sap:unicode="false" sap:label="Tipo de Atendimento" sap:updatable="false"/>
+                <Property Name="TipoAtendDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nome Tp Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Prioridade" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Prioridade"/>
+                <Property Name="PrioridadeDesc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Descrição da prioridade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TempoIdeal" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Ideal"/>
+                <Property Name="TempoBom" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Bom"/>
+                <Property Name="Begda" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Início da validade" sap:updatable="false"/>
+                <Property Name="Endda" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Fim da validade"/>
+            </EntityType>
+            <EntityType Name="zgeehst081" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoAtend"/>
+                    <PropertyRef Name="Especialidade"/>
+                    <PropertyRef Name="Predecessor"/>
+                </Key>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" MaxLength="17" sap:unicode="false" sap:label="Tipo de Atendimento" sap:updatable="false"/>
+                <Property Name="Especialidade" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Especialidade" sap:updatable="false"/>
+                <Property Name="Predecessor" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Especialidade Predecessora" sap:updatable="false"/>
+                <Property Name="TipoAtendDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nome Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EspecialidadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nome Especialidade" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst082" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Especialidade"/>
+                    <PropertyRef Name="Usuario"/>
+                </Key>
+                <Property Name="Especialidade" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Especialidade" sap:updatable="false"/>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Especialista" sap:updatable="false"/>
+                <Property Name="Nome" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EspecialidadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="EspecialidadeDesc" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MaxChamadas" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Nº máximo de chamadas simultâneas" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst083" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Usuario"/>
+                    <PropertyRef Name="TipoAcesso"/>
+                </Key>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Usuário" sap:updatable="false"/>
+                <Property Name="TipoAcesso" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Nível de Acesso" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ImportAtendFromSAP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                    <PropertyRef Name="DataImport"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DataImport" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxRows" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rows" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RETORNO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mensagem de retorno" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Zgeehs091" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Objid"/>
+                </Key>
+                <Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="ID objeto" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Stext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Short" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Abrev.objeto" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst113" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico" sap:updatable="false"/>
+                <Property Name="CentroMedicoDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Nome do Centro Médico"/>
+                <Property Name="QtdeUltChamadas" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Quantidade de últimas chamadas"/>
+                <Property Name="IntervaloChamadas" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Intervalo entre chamadas"/>
+                <Property Name="FreqAtualizacao" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Frequência de atualização"/>
+            </EntityType>
+            <EntityType Name="IniciarAtendimento" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Atend"/>
+                </Key>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Atendimento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxRows" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rows" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RETORNO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CancelarAtendimento" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Atend"/>
+                </Key>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Atendimento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaxRows" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rows" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RETORNO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mensagem de retorno" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AtendPorEspecialista" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Atend"/>
+                    <PropertyRef Name="Especialidade"/>
+                </Key>
+                <Property Name="Atend" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" MaxLength="17" sap:unicode="false" sap:label="Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtendEcc" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Tipo Atendimento (ECC)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendidoCpf" Type="Edm.String" Nullable="false" MaxLength="11" sap:unicode="false" sap:label="Código do Atendido" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendidoCandidato" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Empregado/Candidato" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendidoPn" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº Pessoal  Atendido" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendPn" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nº Pessoal Atendente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Atividade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Atividade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendidoNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome Atendido" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtendDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição do Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TipoAtendEccDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição do Tipo de Atendimento/Agenda SAP" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AtendNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome Atendente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Especialidade" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Especialidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Predecessor" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Espec. Predecessora" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Especialista" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Especialista" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Sala" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Local Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="InicioDatumAtend" Type="Edm.String" sap:unicode="false" sap:label="Data de Iníco Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="InicioUzeitAtend" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de Início Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="InicioDatum" Type="Edm.String" sap:unicode="false" sap:label="Data de início" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="InicioUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de início" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FimDatum" Type="Edm.String" sap:unicode="false" sap:label="Data de fim" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FimUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora de fim" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Observacao" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Observação" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prioridade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Prioridade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EspecialistaProgramado" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Especialista programado" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ChamadaDatum" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Data da chamada" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ChamadaUzeit" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Hora da chamada" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="EspecialistaNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="ome do Especialista" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EspecialidadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Especialidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PredecessorDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Predecessor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PrioridadeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Prioridade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DtNasc" Type="Edm.String" sap:unicode="false" sap:label="Data nasc." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Sexo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sexo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Documento" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Documnto" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Telefone" Type="Edm.String" Nullable="false" MaxLength="14" sap:unicode="false" sap:label="Nº telefone" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Email" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Logradouro" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Logradouro" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Numero" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Número" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Complemento" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Complemento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Bairro" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Bairro" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Cep" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Código postal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Cidade" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Cidade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Estado" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Região" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Pais" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="País" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EmpresaLifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Empresa" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EmpresaNome" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Nome Empresa" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EmpresaCnpj" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="CNPJ Empresa" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Idade" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Idade" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoAtend" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração do Atendimento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoIdeal" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração Ideal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DuracaoBom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Duração Bom" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="StatusColorType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status da Cor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RETORNO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mensagem de retorno" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CarrosselPortal" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CENTROMEDICO"/>
+                </Key>
+                <Property Name="CENTROMEDICO" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ANEXO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Anexo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="BEGDA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Vál.desde" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ENDDA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Válido até" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TPDOC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tipo de documento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FNAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nome do arquivo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FMIME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Tipo MIME" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="FCONT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Conteúdo" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CENTROMEDICODESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Nome do Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TPDOCDESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descrição do Tipo de Documento" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="zgeehst105" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CENTROMEDICO"/>
+                    <PropertyRef Name="TIPOATENDECC"/>
+                </Key>
+                <Property Name="CENTROMEDICO" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Centro Médico" sap:updatable="false"/>
+                <Property Name="TIPOATENDECC" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Agenda SAP" sap:updatable="false"/>
+                <Property Name="BEGDA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Vál.desde" sap:updatable="false"/>
+                <Property Name="ENDDA" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Válido até"/>
+                <Property Name="PRIOX" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Prioridade"/>
+                <Property Name="TIPOATEND" Type="Edm.String" Nullable="false" MaxLength="17" sap:unicode="false" sap:label="Tipo de Atendimento"/>
+                <Property Name="CENTROMEDICODESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descrição do Centro Médico" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TIPOATENDECCDESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Decriç!ao da Agenda SAP" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TIPOATENDDESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Descrição do Tipo de Atendimento" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="Zgeehs999" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoAtend"/>
+                </Key>
+                <Property Name="TipoAtend" Type="Edm.String" Nullable="false" MaxLength="17" sap:unicode="false" sap:label="Tipo de Atendimento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TipoAtendDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descrição doTipo de Atendimento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GraficoTipoAtend" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="GraficoTpAtend" Type="Edm.String" sap:unicode="false" sap:label="Grafico Tipo Atend" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Medico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DadosTabela" Type="Edm.String" sap:unicode="false" sap:label="Dados para Popular Tabela" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GraficoPorEspecialista" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Medico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoEspecialista" Type="Edm.String" sap:unicode="false" sap:label="Grafico Por Especialista" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DadosTabela" Type="Edm.String" sap:unicode="false" sap:label="Dados para Popular Tabela" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GraficoPorEspecialidade" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Medico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoEspecialidade" Type="Edm.String" sap:unicode="false" sap:label="Grafico Por Especialidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DadosTabela" Type="Edm.String" sap:unicode="false" sap:label="Dados para Popular Tabela" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GraficoMediaTpAtend" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CentroMedico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoMediaTp" Type="Edm.String" sap:unicode="false" sap:label="Grafico Media de tempo Tipo Atend" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DadosTabela" Type="Edm.String" sap:unicode="false" sap:label="Dados para Popular Tabela" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GraficoMediaEspecialista" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Medico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoMediaEsp" Type="Edm.String" sap:unicode="false" sap:label="Grafico Media Tempo Especialista" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DadosTabela" Type="Edm.String" sap:unicode="false" sap:label="Dados para Popular Tabela" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GraficoMediaEspecialidade" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Medico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoMediaEsp" Type="Edm.String" sap:unicode="false" sap:label="Grafico Media Tempo Especialidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DadosTabela" Type="Edm.String" sap:unicode="false" sap:label="Dados para Popular Tabela" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="BuscaTodosOsGraficos" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CentroMedico"/>
+                </Key>
+                <Property Name="CentroMedico" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro Medico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoTipoAtend" Type="Edm.String" sap:unicode="false" sap:label="Grafico Tipo Atend" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoPorEspecialista" Type="Edm.String" sap:unicode="false" sap:label="Grafico por Especialista" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoPorEspecialidade" Type="Edm.String" sap:unicode="false" sap:label="Grafico por Especialidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoMediaTpAtend" Type="Edm.String" sap:unicode="false" sap:label="Grafico Media Tipo Atend" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoMediaEspecialista" Type="Edm.String" sap:unicode="false" sap:label="Grafico Media Tempo Especialista" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GraficoMediaEspecialidade" Type="Edm.String" sap:unicode="false" sap:label="Grafico Media Tempo Especialidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Especialidades" Type="Edm.String" sap:unicode="false" sap:label="Especialidades" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Especialistas" Type="Edm.String" sap:unicode="false" sap:label="Especialistas" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZPORTAL_EHS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="UserListSet" EntityType="ZPORTAL_EHS_SRV.UserList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="prioridadeSet" EntityType="ZPORTAL_EHS_SRV.prioridade" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst097Set" EntityType="ZPORTAL_EHS_SRV.zgeehst097" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst096Set" EntityType="ZPORTAL_EHS_SRV.zgeehst096" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst098Set" EntityType="ZPORTAL_EHS_SRV.zgeehst098" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehse096097Set" EntityType="ZPORTAL_EHS_SRV.zgeehse096097" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TpAtendECCSet" EntityType="ZPORTAL_EHS_SRV.TpAtendECC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="LoginEspecialistaSet" EntityType="ZPORTAL_EHS_SRV.LoginEspecialista" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="LoginCentroMedicoSet" EntityType="ZPORTAL_EHS_SRV.LoginCentroMedico" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ChamadaMonitorSet" EntityType="ZPORTAL_EHS_SRV.ChamadaMonitor" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst077Set" EntityType="ZPORTAL_EHS_SRV.zgeehst077" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst078Set" EntityType="ZPORTAL_EHS_SRV.zgeehst078" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst079Set" EntityType="ZPORTAL_EHS_SRV.zgeehst079" sap:updatable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst080Set" EntityType="ZPORTAL_EHS_SRV.zgeehst080" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst081Set" EntityType="ZPORTAL_EHS_SRV.zgeehst081" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst082Set" EntityType="ZPORTAL_EHS_SRV.zgeehst082" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst083Set" EntityType="ZPORTAL_EHS_SRV.zgeehst083" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ImportAtendFromSAPSet" EntityType="ZPORTAL_EHS_SRV.ImportAtendFromSAP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="Zgeehs091Set" EntityType="ZPORTAL_EHS_SRV.Zgeehs091" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst113Set" EntityType="ZPORTAL_EHS_SRV.zgeehst113" sap:updatable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="IniciarAtendimentoSet" EntityType="ZPORTAL_EHS_SRV.IniciarAtendimento" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CancelarAtendimentoSet" EntityType="ZPORTAL_EHS_SRV.CancelarAtendimento" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AtendPorEspecialistaSet" EntityType="ZPORTAL_EHS_SRV.AtendPorEspecialista" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CarrosselPortalSet" EntityType="ZPORTAL_EHS_SRV.CarrosselPortal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="zgeehst105Set" EntityType="ZPORTAL_EHS_SRV.zgeehst105" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Zgeehs999Set" EntityType="ZPORTAL_EHS_SRV.Zgeehs999" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GraficoTipoAtendSet" EntityType="ZPORTAL_EHS_SRV.GraficoTipoAtend" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GraficoPorEspecialistaSet" EntityType="ZPORTAL_EHS_SRV.GraficoPorEspecialista" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GraficoPorEspecialidadeSet" EntityType="ZPORTAL_EHS_SRV.GraficoPorEspecialidade" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GraficoMediaTpAtendSet" EntityType="ZPORTAL_EHS_SRV.GraficoMediaTpAtend" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GraficoMediaEspecialistaSet" EntityType="ZPORTAL_EHS_SRV.GraficoMediaEspecialista" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GraficoMediaEspecialidadeSet" EntityType="ZPORTAL_EHS_SRV.GraficoMediaEspecialidade" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="BuscaTodosOsGraficosSet" EntityType="ZPORTAL_EHS_SRV.BuscaTodosOsGraficos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <FunctionImport Name="ImportAtendFromSAP" ReturnType="ZPORTAL_EHS_SRV.ImportAtendFromSAP" EntitySet="ImportAtendFromSAPSet" m:HttpMethod="GET">
+                    <Parameter Name="CENTRO_MEDICO" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="DATA_IMPORTACAO" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="CancelarAtendimento" ReturnType="ZPORTAL_EHS_SRV.CancelarAtendimento" EntitySet="CancelarAtendimentoSet" m:HttpMethod="GET">
+                    <Parameter Name="ATEND" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="SetLoginEspecialista" ReturnType="ZPORTAL_EHS_SRV.LoginEspecialista" EntitySet="LoginEspecialistaSet" m:HttpMethod="GET">
+                    <Parameter Name="ESPECIALIDADE" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="LOCAL" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="CENTROMEDICO" Type="Edm.String" Mode="In" MaxLength="8"/>
+                </FunctionImport>
+                <FunctionImport Name="SetLoginCentroMedico" ReturnType="ZPORTAL_EHS_SRV.LoginCentroMedico" EntitySet="LoginCentroMedicoSet" m:HttpMethod="GET">
+                    <Parameter Name="CENTROMEDICO" Type="Edm.String" Mode="In" MaxLength="8"/>
+                </FunctionImport>
+                <FunctionImport Name="CancelarChamada" ReturnType="ZPORTAL_EHS_SRV.AtendPorEspecialista" EntitySet="AtendPorEspecialistaSet" m:HttpMethod="GET">
+                    <Parameter Name="ATEND" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ESPECIALIDADE" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="FinalizarChamada" ReturnType="ZPORTAL_EHS_SRV.AtendPorEspecialista" EntitySet="AtendPorEspecialistaSet" m:HttpMethod="GET">
+                    <Parameter Name="ATEND" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ESPECIALIDADE" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="OBSERVACAO" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ESPECIALIDADE2" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="IniciarChamada" ReturnType="ZPORTAL_EHS_SRV.AtendPorEspecialista" EntitySet="AtendPorEspecialistaSet" m:HttpMethod="GET">
+                    <Parameter Name="ATEND" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ESPECIALIDADE" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="UltimasChamadas" ReturnType="Collection(ZPORTAL_EHS_SRV.ChamadaMonitor)" EntitySet="ChamadaMonitorSet" m:HttpMethod="GET">
+                    <Parameter Name="CentroMedico" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="MaxRows" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="SetChamadaMonitorConcluida" ReturnType="ZPORTAL_EHS_SRV.ChamadaMonitor" EntitySet="ChamadaMonitorSet" m:HttpMethod="GET">
+                    <Parameter Name="Atend" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="Especialidade" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="IniciarAtendimento" ReturnType="ZPORTAL_EHS_SRV.IniciarAtendimento" EntitySet="IniciarAtendimentoSet" m:HttpMethod="GET">
+                    <Parameter Name="ATEND" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="ChamarProximo" ReturnType="Collection(ZPORTAL_EHS_SRV.AtendPorEspecialista)" EntitySet="AtendPorEspecialistaSet" m:HttpMethod="GET">
+                    <Parameter Name="CENTRO" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ESPECIALIDADE" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="ESPECIALISTA" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="LOCAL" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="QTDECHAMADAS" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="GetCarrosselPortal" ReturnType="Collection(ZPORTAL_EHS_SRV.CarrosselPortal)" EntitySet="CarrosselPortalSet" m:HttpMethod="GET">
+                    <Parameter Name="CENTROMEDICO" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/opu/odata/sap/ZPORTAL_EHS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/opu/odata/sap/ZPORTAL_EHS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

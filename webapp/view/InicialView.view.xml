@@ -8,11 +8,11 @@
 					<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="37rem">
 						<VBox justifyContent="Center">
 							<HBox>
-								<Label text="{i18n>lblSenhaaqui}" class="TextStyle"/>
+								<Label text="{i18n>lblSenhaaqui}" class="breathe"/>
 							</HBox>
 							<HBox>
 								<VBox width="14rem"/>
-								<Button text="{i18n>lblIniciar}" width="20rem" class="bottonInicial" press="onPress"/>
+								<Button text="{i18n>lblIniciar}" width="25rem"  change="limpaTimeOut" class="bottonInicial" press="onPress"/>
 							</HBox>
 						</VBox>
 					</FlexBox>
