@@ -2,9 +2,7 @@ sap.ui.define([
 	"arcelor/brZAUTOATENDIMENTO_EHS/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"arcelor/brZAUTOATENDIMENTO_EHS/img",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
+	"arcelor/brZAUTOATENDIMENTO_EHS/img"
 ], function(BaseController, JSONModel, MessageBox, Filter, FilterOperator, formatter) {
 	"use strict";
 
@@ -42,7 +40,6 @@ sap.ui.define([
 			var valorMatricula = this.getView().byId("matric").getValue();
 			var isEnabled = this.getView().byId("comb");
 			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/Pernr(Usuario= '" + valorMatricula + "')";
 			var a = false;
 

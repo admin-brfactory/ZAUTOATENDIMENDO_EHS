@@ -41,7 +41,6 @@ sap.ui.define([
 			var Nome = this.getView().byId("nome").getValue();
 			var isEnabled = this.getView().byId("comb");
 			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
 			var a = false;
 
