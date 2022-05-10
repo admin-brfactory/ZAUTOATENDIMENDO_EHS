@@ -11,7 +11,7 @@
 		<Label text="{i18n>lblMatricula}" class="sapUiSmallMargin"/>
 		<l:Grid>
 			<HBox alignItems="Center">
-				<Input type="Number" placeholder="{i18n>lblMatricula}" width="14rem" id="matric" liveChange="checaNumerico('matric', '8')"
+				<Input type="Number" placeholder="{i18n>lblMatricula}" width="14rem" id="matric" liveChange="checaNumerico('matric', '8'),limpaTimeOut"
 					class="inputMatricula"/>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>

@@ -8,7 +8,7 @@ sap.ui.define([
 ], function(BaseController, JSONModel, MessageBox, Filter, FilterOperator, formatter) {
 	"use strict";
 
-	var TimeOut = 0;
+	var TimeOut = 1;
 
 	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.matriculaView", {
 
@@ -33,14 +33,7 @@ sap.ui.define([
 
 		limpaTimeOut: function() {
 			clearTimeout(TimeOut);
-			TimeOut = 0;
 			this.initTimeOut();
-		},
-
-		onPress: function(oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			this.limpaTimeOut();
-			oRouter.navTo("matriculaView");
 		},
 
 		onValidaPress: function(oEvent) {
@@ -52,17 +45,13 @@ sap.ui.define([
 			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/Pernr(Usuario= '" + valorMatricula + "')";
 			var a = false;
-			
+
 			this.limpaTimeOut();
 
 			if (valorMatricula == "") {
 				MessageBox.error("Favor preencher uma Matricula!");
 				return;
 			}
-
-			// var aFilters = [
-			// 	new Filter("Usuario", FilterOperator.EQ, valorMatricula)
-			// ];
 
 			sap.ui.core.BusyIndicator.show();
 			oModel.read("/Pernr", {
@@ -85,13 +74,11 @@ sap.ui.define([
 
 		onCriarAtendiPress: function(oEvent) {
 			var oViewModel = this.getView().getModel("oViewModel");
+			var oModel = this.getOwnerComponent().getModel();
 			var valorMatricula = this.getView().byId("matric").getValue();
 			var Nome = this.getView().byId("nome").getValue();
 			var ComboBox = this.getView().byId("comb").getValue();
 			var oRouter = this.getOwnerComponent().getRouter();
-			var isEnabled = this.getView().byId("comb");
-			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
 
 			if (valorMatricula == "" || ComboBox == "") {
 				MessageBox.error("Favor preencher todos os campos !");
@@ -116,27 +103,22 @@ sap.ui.define([
 			this.getView().byId("matric").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+			this.limpaCampos();
 			this.limpaTimeOut();
-
-			isEnabled.setEnabled(false);
-			CriarArcelo.setEnabled(false);
 
 		},
 
 		onCancelar: function(oEvent) {
-			var oViewModel = this.getView().getModel("oViewModel");
+			var oViewModel = this.getView().getModel("matriculaModel");
+			var oModel = this.getOwnerComponent().getModel();
 			var oRouter = this.getOwnerComponent().getRouter();
-			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
-			var isEnabled = this.getView().byId("comb");
 
-			this.limpaTimeOut();
-			this.getView().byId( "nome").setValue("");
+			clearTimeout(TimeOut);
+			this.getView().byId("nome").setValue("");
 			this.getView().byId("matric").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+			this.limpaCampos();
 
-			isEnabled.setEnabled(false);
-			CriarArcelo.setEnabled(false);
 			oRouter.navTo("inicial_view");
 		},
 
@@ -155,10 +137,17 @@ sap.ui.define([
 		},
 
 		limpaCampos: function() {
-			var oViewModel = this.getView().getModel("oViewModel");
+			var oViewModel = this.getView().getModel("matriculaModel");
+			var oModel = this.getOwnerComponent().getModel();
+			var CriarArcelo = this.getView().byId("CriarArcel");
+			var isEnabled = this.getView().byId("comb");
+
 			this.getView().byId("matric").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+
+			isEnabled.setEnabled(false);
+			CriarArcelo.setEnabled(false);
 		},
 
 		onExit: function() {

@@ -15,7 +15,7 @@ sap.ui.define([
 				img: img()[0].img
 
 			});
-			
+
 			this.getView().setModel(oViewModel, "cpfModel");
 			this.initTimeOut();
 
@@ -31,15 +31,7 @@ sap.ui.define([
 
 		limpaTimeOut: function() {
 			clearTimeout(TimeOut);
-			TimeOut = 0;
-			
 			this.initTimeOut();
-		},
-
-		onPress: function(oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			this.limpaTimeOut();
-			oRouter.navTo("matriculaNaoColaborador");
 		},
 
 		onValidaPress: function(oEvent) {
@@ -86,19 +78,14 @@ sap.ui.define([
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
 			var ComboBox = this.getView().byId("comb").getValue();
-			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
-			var isEnabled = this.getView().byId("comb");
 			var oRouter = this.getOwnerComponent().getRouter();
 
-			this.limpaTimeOut();
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("CPF").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
-
-			CriarArcelo.setEnabled(false);
-			isEnabled.setEnabled(false);
+			this.limpaCampos();
+			this.limpaTimeOut();
 
 			if (valorCPF == "" || ComboBox == "" || Nome == "") {
 				MessageBox.error("Favor preencher todos os campos!");
@@ -118,9 +105,7 @@ sap.ui.define([
 						}
 					}
 				});
-				if (Data) {
 
-				}
 				sap.ui.core.BusyIndicator.show();
 				oModel.read(sUrl, {
 
@@ -141,18 +126,15 @@ sap.ui.define([
 
 		onCancelar: function(oEvent) {
 			var oViewModel = this.getView().getModel("cpfModel");
+			var oModel = this.getOwnerComponent().getModel();
 			var oRouter = this.getOwnerComponent().getRouter();
-			var CriarArcelo = this.getView().byId("CriarArcel");
-			var ArclCancela = this.getView().byId("ArclCancelar");
-			var isEnabled = this.getView().byId("comb");
 
-			this.limpaTimeOut();
+			clearTimeout(TimeOut);
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("CPF").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+			this.limpaCampos();
 
-			CriarArcelo.setEnabled(false);
-			isEnabled.setEnabled(false);
 			oRouter.navTo("inicial_view");
 		},
 
@@ -186,9 +168,17 @@ sap.ui.define([
 
 		limpaCampos: function() {
 			var oViewModel = this.getView().getModel("cpfModel");
-			this.getView().byId("matric").setValue("");
+			var oModel = this.getOwnerComponent().getModel();
+			var CriarArcelo = this.getView().byId("CriarArcel");
+			var ArclCancela = this.getView().byId("ArclCancelar");
+			var isEnabled = this.getView().byId("comb");
+
+			this.getView().byId("CPF").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+
+			isEnabled.setEnabled(false);
+			CriarArcelo.setEnabled(false);
 		},
 
 		onExit: function() {

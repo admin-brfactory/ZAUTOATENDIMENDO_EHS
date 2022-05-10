@@ -27,20 +27,12 @@ sap.ui.define([
 
 		limpaTimeOut: function() {
 			clearTimeout(TimeOut);
-			TimeOut = 0;
-			this.initTimeOut();
 		},
 		
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			this.limpaTimeOut();
 			oRouter.navTo("tipo_colaborador_view");
-		},
-
-		onPress1: function(oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			this.limpaTimeOut();
-			oRouter.navTo("InicialView");
 		}
 	});
 });

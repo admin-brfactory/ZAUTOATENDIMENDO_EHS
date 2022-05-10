@@ -8,12 +8,12 @@ sap.ui.define([
 	var TimeOut = 0;
 
 	return BaseController.extend("arcelor.brZAUTOATENDIMENTO_EHS.controller.finalView", {
-		
+
 		onInit: function() {
 			var oViewModel = new JSONModel({
 
 			});
-			
+
 			this.getView().setModel(oViewModel, "finalModel");
 			this.initTimeOut();
 		},
@@ -27,7 +27,6 @@ sap.ui.define([
 
 		limpaTimeOut: function() {
 			clearTimeout(TimeOut);
-			TimeOut = 0;
 			this.initTimeOut();
 		},
 

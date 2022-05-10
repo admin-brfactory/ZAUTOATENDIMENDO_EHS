@@ -28,22 +28,14 @@ sap.ui.define([
 		},
 
 		limpaTimeOut: function() {
-			// var timer_on = 0;
 			clearTimeout(TimeOut);
-			TimeOut = 0;
 			this.initTimeOut();
-		},
-
-		onPress: function(oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			this.limpaTimeOut();
-			oRouter.navTo("tipoColaboradorView");
 		},
 
 		onColaboradorPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			
-			this.limpaTimeOut();
+			clearTimeout(TimeOut);
 			
 			oRouter.navTo("matricula_view");
 		},
@@ -51,7 +43,7 @@ sap.ui.define([
 		onNaoColaboradorPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			
-			this.limpaTimeOut();
+			clearTimeout(TimeOut);
 			
 			oRouter.navTo("matricula_nao_colaborador");
 		},

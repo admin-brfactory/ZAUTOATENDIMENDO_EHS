@@ -11,12 +11,12 @@
 		<Label text="{i18n>CPF}" class="sapUiSmallMargin"/>
 		<l:Grid>
 			<HBox alignItems="Center">
-				<Input type="Number" placeholder="{i18n>lblCPF}" width="14rem" id="CPF" liveChange="checaNumerico('CPF', '11')" class="inputMatricula"/>
+				<Input type="Number" placeholder="{i18n>lblCPF}" width="14rem" id="CPF" liveChange="checaNumerico('CPF', '11'),limpaTimeOut" class="inputMatricula"/>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
 				<VBox width="0.5rem"/>
-				<Input placeholder="{i18n>lblNome}" id="nome" width="34rem" class="inputMatricula" value="" liveChange="checaNome('nome')"/>
+				<Input placeholder="{i18n>lblNome}" id="nome" width="34rem" class="inputMatricula" value="" liveChange="checaNome('nome'),limpaTimeOut"/>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
