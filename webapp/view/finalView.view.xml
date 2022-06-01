@@ -4,7 +4,7 @@
 	<Page showHeader="false" enableScrolling="false">
 		<content>
 			<OverflowToolbar id="otb1" class="finalOver">
-				<Label width="25rem"/>
+				<Label width="41%"/>
 				<Label text="Concluido" class="lblConclu"/>
 				<ToolbarSpacer/>
 			</OverflowToolbar>

@@ -2,8 +2,9 @@ sap.ui.define([
 	"arcelor/brZAUTOATENDIMENTO_EHS/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"arcelor/brZAUTOATENDIMENTO_EHS/img"
-], function(BaseController, JSONModel, MessageBox, formatter) {
+	"arcelor/brZAUTOATENDIMENTO_EHS/img",
+	"sap/m/MessageToast"
+], function(BaseController, JSONModel, MessageBox, formatter, MessageToast) {
 	"use strict";
 
 	var TimeOut = 0;
@@ -12,7 +13,10 @@ sap.ui.define([
 
 		onInit: function() {
 			var oViewModel = new JSONModel({
-				img: img()[0].img
+				img: img()[0].img,
+				tipoAtendi: [],
+				Atend: [],
+				centroMedico: []
 
 			});
 
@@ -44,8 +48,6 @@ sap.ui.define([
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
 			var a = false;
 
-			this.limpaTimeOut();
-
 			if (valorCPF == "" || Nome == "") {
 				MessageBox.error("Favor preencher todos os campos!");
 				return;
@@ -56,6 +58,7 @@ sap.ui.define([
 
 				success: function(oData) {
 					sap.ui.core.BusyIndicator.hide();
+					this.getView().byId("nome").setValue(oData.Nome);
 					console.log(oData);
 				}.bind(this),
 
@@ -65,10 +68,40 @@ sap.ui.define([
 				}.bind(this)
 
 			});
-
+			
+			clearTimeout(TimeOut);
 			CriarArcelo.setEnabled(!a);
 			isEnabled.setEnabled(!a);
 
+			this.getTipoAtendi();
+			this.limpaTimeOut();
+		},
+
+		getTipoAtendi: function(sCPF, sCentroMedico) {
+			var oViewModel = this.getView().getModel("cpfModel");
+			var oModel = this.getOwnerComponent().getModel();
+			var cpf = this.getView().byId("CPF").getValue()
+
+			sap.ui.core.BusyIndicator.show();
+			oModel.callFunction(
+				"/GetTpAtendByCPF", {
+					method: "GET",
+					urlParameters: {
+						CPF: cpf,
+						CENTROMEDICO: "50041620"
+					},
+					success: function(oData, response) {
+						sap.ui.core.BusyIndicator.hide();
+						var resultadooData = oData.results;
+						oViewModel.setProperty("/tipoAtendi", resultadooData);
+						oViewModel.setProperty("/Atend", resultadooData);
+						console.log(oData);
+					},
+					error: function(oError) {
+						sap.ui.core.BusyIndicator.hide();
+						console.log(oError);
+					}
+				});
 		},
 
 		onCriarAtendiPress: function(oEvent) {
@@ -76,51 +109,70 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel();
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
-			var ComboBox = this.getView().byId("comb").getValue();
-			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
+			var tipodeAtendimento = this.getView().byId("comb").getSelectedKey();
 			var oRouter = this.getOwnerComponent().getRouter();
 
-			this.getView().byId("nome").setValue("");
-			this.getView().byId("CPF").setValue("");
-			this.getView().byId("comb").setSelectedKey("");
-			this.limpaCampos();
-			this.limpaTimeOut();
-
-			if (valorCPF == "" || ComboBox == "" || Nome == "") {
+			if (valorCPF == "" || tipodeAtendimento == "" || Nome == "") {
 				MessageBox.error("Favor preencher todos os campos!");
 				return;
 			}
 
-			if (valorCPF != "" || ComboBox != "" || Nome != "") {
+			if (valorCPF != "" || tipodeAtendimento != "" || Nome != "") {
 				MessageBox.confirm("Confirme Atendimento", {
 					title: "Prezado",
 					actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 					emphasizedAction: MessageBox.Action.YES,
 					onClose: function(oAction) {
 						if (oAction === "YES") {
-							var that = this;
-							that.oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-							oRouter.navTo('final_view');
+							this.onCriarAtend();
 						}
-					}
-				});
-
-				sap.ui.core.BusyIndicator.show();
-				oModel.read(sUrl, {
-
-					success: function(oData) {
-						sap.ui.core.BusyIndicator.hide();
-						console.log(oData);
 					}.bind(this),
-
-					error: function(oError) {
-						sap.ui.core.BusyIndicator.hide();
-						console.log(oError);
-					}.bind(this)
 				});
-
 			}
 
+			clearTimeout(TimeOut);
+			this.limpaTimeOut();
+
+		},
+
+		onCriarAtend: function() {
+			var oViewModel = this.getView().getModel("cpfModel");
+			var oGlobalModel = this.getOwnerComponent().getModel("GlobalModel");
+			var oModel = this.getOwnerComponent().getModel();
+			var valorCPF = this.getView().byId("CPF").getValue();
+			var Nome = this.getView().byId("nome").getValue();
+			var tipodeAtendimento = this.getView().byId("comb").getSelectedKey();
+			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
+			var oRouter = this.getOwnerComponent().getRouter();
+			var dadosAtend = oViewModel.getProperty("/Atend");
+			var AtendFilter = dadosAtend.filter(val => val.TIPOATEND == tipodeAtendimento);
+			var Atend = AtendFilter[0].ATEND;
+			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed", this.getView().byId('listCentro'));
+	
+			oModel.callFunction(
+				"/GerarSenha", {
+					method: "GET",
+					urlParameters: {
+						NOME: Nome,
+						ATEND: Atend,
+						CENTROMEDICO: CentroMedico,
+						CPF: valorCPF,
+						TIPOATEND: tipodeAtendimento
+					},
+					success: function(oData, response) {
+						console.log(oData);
+						this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+						oRouter.navTo('final_view');
+						this.limpaCampos();
+					}.bind(this),
+					error: function(oError) {
+						var erro = JSON.parse(oError.responseText);
+						var erroMessage = erro.error.message.value;
+						MessageToast.show(erroMessage, {
+							duration: 7000
+						});
+					}
+				});
 		},
 
 		onCancelar: function(oEvent) {
@@ -129,9 +181,6 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 
 			clearTimeout(TimeOut);
-			this.getView().byId("nome").setValue("");
-			this.getView().byId("CPF").setValue("");
-			this.getView().byId("comb").setSelectedKey("");
 			this.limpaCampos();
 
 			oRouter.navTo("inicial_view");
@@ -174,6 +223,7 @@ sap.ui.define([
 			this.getView().byId("CPF").setValue("");
 			this.getView().byId("nome").setValue("");
 			this.getView().byId("comb").setSelectedKey("");
+			oViewModel.setProperty("/tipoAtendi", []);
 
 			isEnabled.setEnabled(false);
 			CriarArcelo.setEnabled(false);

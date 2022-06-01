@@ -44,7 +44,8 @@
     "sourceFolder": "webapp",
     "targetFolder": "dist",
     "excludedFolders": [],
-    "excludedFiles": []
+    "excludedFiles": [],
+    "lastBuildDateTime": "Tue, 17 May 2022 11:09:54 GMT"
   },
   "mockpreview": {
     "mockUri": "/MB1/sap/opu/odata/sap/ZPORTAL_EHS_SRV",
@@ -52,5 +53,9 @@
     "loadJSONFiles": false,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
+  },
+  "deploy": {
+    "destination": "MB1",
+    "name": "ZAUTOATEND_EHS"
   }
 }

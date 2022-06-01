@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns="sap.m" displayBlock="true">
+	<Dialog id="centroMedico" title='Centros Médicos'>
+		<List id="listCentro" items="{InicialModel>/centros}" mode="SingleSelectLeft">
+			<StandardListItem title="{InicialModel>CentroMedico}" description="{InicialModel>CentroMedicoDesc}" iconDensityAware="false"
+				iconInset="false"/>
+		</List>
+		<buttons>
+			<Button text="{i18n>lblConfirmar}" press="_onCloseDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

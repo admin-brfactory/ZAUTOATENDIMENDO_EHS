@@ -8,6 +8,99 @@
     background-color: ##ffffff !important;
 }
 
+.sapMSlt>.sapMSltLabel {
+    line-height: 4rem;
+}
+
+.sapMSltArrow {
+    line-height: 4rem;
+}
+
+.sapMSlt>.sapMSltLabel {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+    text-indent: 0;
+    text-align: Start;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    line-height: 4rem;
+    color: #32363a;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+.sapMBarLeft, .sapMBarRight, .sapMBarPH {
+    height: 2.75rem;
+    line-height: .75rem;
+    m: ;
+}
+
+.sapMTB {
+    height: 2.75rem;
+    padding: 0 0.5rem;
+}
+
+.sapMIBar-CTX.sapMFooter-CTX {
+    color: #32363a;
+    text-shadow: none;
+    background-color: #fff;
+    background-image: none;
+    border-top: 1px solid #d9d9d9;
+    box-shadow: none;
+        height: 2.75rem;
+}
+
+.sapMIBar.sapMHeader-CTX {
+    color: #32363a;
+    background-color: #fff;
+    filter: none;
+    background-image: none;
+    height: 2.75rem;
+    line-height: 5.75rem;
+}
+
+.sapMSelectListItemBase {
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #32363a;
+    font-size: 1rem;
+    height: 3.5rem;
+    cursor: pointer;
+}
+
+.sapMSuggestionsPopover .sapMListUl>.sapMLIB {
+    height: 6rem;
+    line-height: 5.75rem;
+}
+
+.select {
+    /*    order: 0;*/
+    /*    flex-grow: 4;*/
+    /*    flex-shrink: 0;*/
+    /*    flex-basis: auto;*/
+    /*    min-height: auto;*/
+    /*    min-width: auto;*/
+    width: 25rem;
+    height: 4.7rem !important;
+    font-size: 2rem;
+    /*    text-align: center !important;*/
+    /*    position: relative !important;*/
+    border-radius: 0.5rem !important;
+    /*    border: 1rem #ff7100 !important;*/
+    /*    line-height: 2.5rem !important;*/
+    /*    background-color: #ffffff !important;*/
+    /*    color: #ff7100 !important;*/
+}
+
 .TextStyle {
     height: 5rem !important;
     font-size: 3rem !important;
@@ -15,7 +108,7 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
 }
 
@@ -33,7 +126,7 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
 }
 
@@ -44,7 +137,7 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
 }
 
@@ -55,7 +148,7 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
 }
 
@@ -66,7 +159,7 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
 }
 
@@ -77,7 +170,7 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
 }
 
@@ -88,9 +181,13 @@
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
     line-height: 2.5rem !important;
+}
+
+.sapMFlexItem {
+    position: relative;
 }
 
 .inputMatricula {
@@ -101,13 +198,13 @@
     border: 0.0625rem #ff7100 !important;
     line-height: 2.5rem !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
 }
 
 .inputSelected {
     height: 4.7rem !important;
     text-align: center !important;
-    position: center !important;
+    position: relative !important;
     border-radius: 0.5rem !important;
     border: 0.0625rem #ff7100 !important;
     line-height: 2.5rem !important;
@@ -210,9 +307,7 @@
     border-top: 1px solid #ff7100;
 }
 
-.sapMTB.sapMTBNoBorders {
-}
-
+.sapMTB.sapMTBNoBorders {}
 
 .sapUiFormTitleH4 {
     font-size: 2.5rem;
@@ -240,7 +335,7 @@
     animation-delay: 0 !important;
     animation-iteration-count: infinite !important;
     animation-direction: alternate !important;
-    font-size: 8.875rem !important;
+    font-size: 380% !important;
 }
 
 @keyframes breathe {

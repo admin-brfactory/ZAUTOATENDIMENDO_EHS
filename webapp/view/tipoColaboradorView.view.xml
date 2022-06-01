@@ -2,25 +2,23 @@
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f" xmlns:l="sap.ui.layout" xmlns:lf="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<Page showHeader="false" class="TelatipoColaboradorView" enableScrolling="false">
-		<content>
-			<OverflowToolbar id="otb1" height="8rem">
-				<Image src="{ColaboradorModel>/img}" height="80%"/>
-				<Label width="8%"/>
-				<Label text="{i18n>lblautoAtendimento}" class="LabelAuto"/>
-				<ToolbarSpacer/>
-			</OverflowToolbar>
-			<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="28rem">
-				<VBox justifyContent="Center">
-					<HBox>
-						<Button text="{i18n>lblSouColaboradordaArcelorMitall}" width="40rem" class="bottonColaborador" press="onColaboradorPress"/>
-					</HBox>
-					<VBox class="sapUiLargeMargin"/>
-					<HBox>
-						<VBox/>
-						<Button text="{i18n>lblNaoSouColaboradordaArcelorMitall}" width="40rem" class="bottonNaoColaborador" press="onNaoColaboradorPress"/>
-					</HBox>
-				</VBox>
-			</FlexBox>
-		</content>
+		<OverflowToolbar id="otb1" height="8rem">
+			<Image src="{ColaboradorModel>/img}" height="80%"/>
+			<Label width="5%"/>
+			<Label text="{i18n>lblautoAtendimento}" class="LabelAuto"/>
+			<ToolbarSpacer/>
+		</OverflowToolbar>
+		<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="50%">
+			<VBox justifyContent="Center">
+				<HBox>
+					<Button text="{i18n>lblSouColaboradordaArcelorMitall}" width="40rem" class="bottonColaborador" press="onColaboradorPress"/>
+				</HBox>
+				<VBox class="sapUiLargeMargin"/>
+				<HBox>
+					<VBox/>
+					<Button text="{i18n>lblNaoSouColaboradordaArcelorMitall}" width="40rem" class="bottonNaoColaborador" press="onNaoColaboradorPress"/>
+				</HBox>
+			</VBox>
+		</FlexBox>
 	</Page>
 </mvc:View>

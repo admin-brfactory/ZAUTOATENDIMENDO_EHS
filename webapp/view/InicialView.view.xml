@@ -3,20 +3,24 @@
 	xmlns:core="sap.ui.core">
 	<App>
 		<pages>
-			<Page showHeader="false" class="TelaInicial">
+			<Page showHeader="false" class="TelaInicial" enableScrolling="false">
 				<content>
-					<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="37rem">
+					<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="80%">
 						<VBox justifyContent="Center">
 							<HBox>
 								<Label text="{i18n>lblSenhaaqui}" class="breathe"/>
 							</HBox>
 							<HBox>
-								<VBox width="14rem"/>
-								<Button text="{i18n>lblIniciar}" width="25rem" class="bottonInicial" press="onPress"/>
+								<VBox width="25%"/>
+								<Button text="{i18n>lblIniciar}" width="330%" class="bottonInicial" press="onPress"/>
 							</HBox>
 						</VBox>
 					</FlexBox>
 				</content>
+				<!--<Popover showHeader="false" placement="escolhaCentro">-->
+				<!--	<Button text="Centro Medico Tubarão" press="Tubarao"/>-->
+				<!--	<Button text="Centro Medico Vega" press="Vega"/>-->
+				<!--</Popover>-->
 			</Page>
 		</pages>
 	</App>

@@ -4,48 +4,49 @@
 	<Page showHeader="false" class="TelatipoColaboradorView" enableScrolling="false" floatingFooter="false">
 		<OverflowToolbar id="otb1" height="8rem">
 			<Image src="{matriculaModel>/img}" height="80%"/>
-			<Label width="8%"/>
+			<Label width="5%"/>
 			<Label text="{i18n>lblautoAtendimento}" class="LabelAuto"/>
 			<ToolbarSpacer/>
 		</OverflowToolbar>
 		<Label text="{i18n>lblMatricula}" class="sapUiSmallMargin"/>
 		<l:Grid>
 			<HBox alignItems="Center">
-				<Input type="Number" placeholder="{i18n>lblMatricula}" width="14rem" id="matric" liveChange="checaNumerico('matric', '8'),limpaTimeOut"
+				<Input type="Number" placeholder="{i18n>lblMatricula}" width="100%" id="matric" liveChange="checaNumerico('matric', '8'),limpaTimeOut"
 					class="inputMatricula"/>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
-				<VBox width="0.5rem"/>
-				<Input enabled="false" id="nome" width="34rem" class="inputMatricula" value="" liveChange="limpaTimeOut"/>
+				<VBox width="1rem"/>
+				<ActionSelect id="nome" change="linhaSelecionada" width="30rem" items="{matriculaModel>/PegaLista}" class="select">
+					<items>
+						<core:Item key="{matriculaModel>Cpf}" text="{matriculaModel>Nome}"/>
+					</items>
+				</ActionSelect>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
-				<VBox width="0.5rem"/>
-				<Button text="{i18n>lblConfirmar}" width="12rem" press="onValidaPress" class="bottonconfirmarmatri"/>
+				<VBox width="1rem"/>
+				<Button text="{i18n>lblConfirmar}" width="100%" press="onValidaPress" class="bottonconfirmarmatri"/>
 			</HBox>
 		</l:Grid>
 		<Label text="{i18n>lblaAtendimento}" class="sapUiSmallMargin"/>
 		<l:Grid>
 			<HBox alignItems="Center">
-				<ComboBox items="" placeholder="{i18n>lbltiposdeAtendimento}" width="30rem" enabled="false" id="comb" class="inputSelected">
+				<ComboBox items="{matriculaModel>/TipoAtendime}" placeholder="{i18n>lbltiposdeAtendimento}" width="26rem" enabled="false" id="comb" class="inputSelected">
 					<core:Item key="0" text=""/>
-					<core:Item key="1" text="teste1"/>
-					<core:Item key="2" text="teste2"/>
-					<core:Item key="3" text="teste3"/>
-					<core:Item key="4" text="teste4"/>
+					<core:Item key="{matriculaModel>TIPOATEND}" text="{matriculaModel>TIPOATENDDESC}"/>
 				</ComboBox>
 				<layoutData>
 					<l:GridData span="XL12 L12 M12 S12"/>
 				</layoutData>
-				<VBox width="0.5rem"/>
-				<Button text="{i18n>lblCriarAtendimento}" class="bottonCriarAtend" width="30rem" press="onCriarAtendiPress" id="CriarArcel" enabled="false"/>
+				<VBox width="1rem"/>
+				<Button text="{i18n>lblCriarAtendimento}" class="bottonCriarAtend" width="175%" press="onCriarAtendiPress" id="CriarArcel" enabled="false"/>
 			</HBox>
 		</l:Grid>
 		<footer class="footer">
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button text="{i18n>lblCancelar}" class="bottonCancelar" press="onCancelar" id="ArclCancelar" width="31rem"/>
+				<Button text="{i18n>lblCancelar}" class="bottonCancelar" press="onCancelar" id="ArclCancelar" width="50%"/>
 			</OverflowToolbar>
 		</footer>
 	</Page>
