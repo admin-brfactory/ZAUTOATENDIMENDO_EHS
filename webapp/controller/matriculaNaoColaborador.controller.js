@@ -3,8 +3,10 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"arcelor/brZAUTOATENDIMENTO_EHS/img",
-	"sap/m/MessageToast"
-], function(BaseController, JSONModel, MessageBox, formatter, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function(BaseController, JSONModel, MessageBox, formatter, MessageToast, Filter, FilterOperator) {
 	"use strict";
 
 	var TimeOut = 0;
@@ -15,6 +17,7 @@ sap.ui.define([
 			var oViewModel = new JSONModel({
 				img: img()[0].img,
 				tipoAtendi: [],
+				PegaLista: [],
 				Atend: [],
 				centroMedico: []
 
@@ -22,6 +25,7 @@ sap.ui.define([
 
 			this.getView().setModel(oViewModel, "cpfModel");
 			this.initTimeOut();
+			this.limpaCampos();
 
 		},
 
@@ -29,8 +33,9 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 
 			TimeOut = setTimeout(function() {
+				this.limpaCampos();
 				oRouter.navTo("inicial_view");
-			}, 60000);
+			}.bind(this), 120000);
 		},
 
 		limpaTimeOut: function() {
@@ -43,10 +48,10 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel();
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
-			var isEnabled = this.getView().byId("comb");
+			var isEnabled = this.getView().byId("combo");
 			var CriarArcelo = this.getView().byId("CriarArcel");
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
-			var a = false;
+			var habilitarCampos = false;
 
 			if (valorCPF == "" || Nome == "") {
 				MessageBox.error("Favor preencher todos os campos!");
@@ -59,28 +64,26 @@ sap.ui.define([
 				success: function(oData) {
 					sap.ui.core.BusyIndicator.hide();
 					this.getView().byId("nome").setValue(oData.Nome);
-					console.log(oData);
 				}.bind(this),
 
 				error: function(oError) {
 					sap.ui.core.BusyIndicator.hide();
-					console.log(oError);
 				}.bind(this)
 
 			});
-			
-			clearTimeout(TimeOut);
-			CriarArcelo.setEnabled(!a);
-			isEnabled.setEnabled(!a);
-
 			this.getTipoAtendi();
 			this.limpaTimeOut();
+
+			clearTimeout(TimeOut);
+			CriarArcelo.setEnabled(!habilitarCampos);
+			isEnabled.setEnabled(!habilitarCampos);
 		},
 
 		getTipoAtendi: function(sCPF, sCentroMedico) {
 			var oViewModel = this.getView().getModel("cpfModel");
 			var oModel = this.getOwnerComponent().getModel();
 			var cpf = this.getView().byId("CPF").getValue()
+			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed");
 
 			sap.ui.core.BusyIndicator.show();
 			oModel.callFunction(
@@ -88,18 +91,28 @@ sap.ui.define([
 					method: "GET",
 					urlParameters: {
 						CPF: cpf,
-						CENTROMEDICO: "50041620"
+						CENTROMEDICO: CentroMedico
 					},
 					success: function(oData, response) {
 						sap.ui.core.BusyIndicator.hide();
 						var resultadooData = oData.results;
-						oViewModel.setProperty("/tipoAtendi", resultadooData);
-						oViewModel.setProperty("/Atend", resultadooData);
-						console.log(oData);
-					},
+						if (oData.results.length > 1) {
+							oViewModel.setProperty("/tipoAtendi", resultadooData);
+							oViewModel.setProperty("/Atend", resultadooData);
+							this.getView().byId("combo").setSelectedKey("");
+						} else {
+							oViewModel.setProperty("/tipoAtendi", resultadooData);
+							oViewModel.setProperty("/Atend", resultadooData);
+							this.getView().byId("combo").setSelectedKey(oData.results[0].TIPOATEND);
+						}
+					}.bind(this),
 					error: function(oError) {
 						sap.ui.core.BusyIndicator.hide();
-						console.log(oError);
+						var erro = JSON.parse(oError.responseText);
+						var erroMessage = erro.error.message.value;
+						MessageToast.show(erroMessage, {
+							duration: 7000
+						});
 					}
 				});
 		},
@@ -109,7 +122,7 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel();
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
-			var tipodeAtendimento = this.getView().byId("comb").getSelectedKey();
+			var tipodeAtendimento = this.getView().byId("combo").getSelectedKey();
 			var oRouter = this.getOwnerComponent().getRouter();
 
 			if (valorCPF == "" || tipodeAtendimento == "" || Nome == "") {
@@ -141,14 +154,15 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel();
 			var valorCPF = this.getView().byId("CPF").getValue();
 			var Nome = this.getView().byId("nome").getValue();
-			var tipodeAtendimento = this.getView().byId("comb").getSelectedKey();
+			var tipodeAtendimento = this.getView().byId("combo").getSelectedKey();
 			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
 			var oRouter = this.getOwnerComponent().getRouter();
 			var dadosAtend = oViewModel.getProperty("/Atend");
 			var AtendFilter = dadosAtend.filter(val => val.TIPOATEND == tipodeAtendimento);
 			var Atend = AtendFilter[0].ATEND;
-			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed", this.getView().byId('listCentro'));
-	
+			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed");
+
+			sap.ui.core.BusyIndicator.show();
 			oModel.callFunction(
 				"/GerarSenha", {
 					method: "GET",
@@ -160,12 +174,14 @@ sap.ui.define([
 						TIPOATEND: tipodeAtendimento
 					},
 					success: function(oData, response) {
-						console.log(oData);
+						sap.ui.core.BusyIndicator.hide();
+						oGlobalModel.setProperty("/mensagemSucess", oData.Texto);
 						this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 						oRouter.navTo('final_view');
 						this.limpaCampos();
 					}.bind(this),
 					error: function(oError) {
+						sap.ui.core.BusyIndicator.hide();
 						var erro = JSON.parse(oError.responseText);
 						var erroMessage = erro.error.message.value;
 						MessageToast.show(erroMessage, {
@@ -190,6 +206,7 @@ sap.ui.define([
 			var regExp = /[a-zA-Z]/g;
 			var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?°¨¨ºª₢£¢¬§`~´çÇ]+/;
 			var sValue = this.getView().byId(sID).getValue();
+			var buscaNome = sValue.length;
 
 			if (sLength) {
 				this.getView().byId(sID).setValue(sValue.substr(0, sLength));
@@ -197,6 +214,10 @@ sap.ui.define([
 
 			if (regExp.test(sValue) || format.test(sValue)) {
 				this.getView().byId(sID).setValue(sValue.substring(0, sValue.length - 1));
+			}
+
+			if (buscaNome == 11) {
+				this.chamadaNome();
 			}
 		},
 
@@ -214,15 +235,40 @@ sap.ui.define([
 			}
 		},
 
+		chamadaNome: function() {
+			var oViewModel = this.getView().getModel("cpfModel");
+			var oModel = this.getOwnerComponent().getModel();
+			var valorCPF = this.getView().byId("CPF").getValue();
+			var sUrl = "/zgeehst097Set(Cpf='" + valorCPF + "')";
+
+			sap.ui.core.BusyIndicator.show();
+			oModel.read(sUrl, {
+				success: function(oData) {
+					sap.ui.core.BusyIndicator.hide();
+					var resultadooData = oData.Nome;
+					this.getView().byId("nome").setValue(resultadooData);
+					this.getTipoAtendi();
+				}.bind(this),
+				error: function(oError) {
+					sap.ui.core.BusyIndicator.hide();
+					var erro = JSON.parse(oError.responseText);
+					var erroMessage = erro.error.message.value;
+					MessageToast.show(erroMessage, {
+						duration: 7000
+					});
+				}.bind(this)
+			});
+		},
+
 		limpaCampos: function() {
 			var oViewModel = this.getView().getModel("cpfModel");
 			var oModel = this.getOwnerComponent().getModel();
 			var CriarArcelo = this.getView().byId("CriarArcel");
-			var isEnabled = this.getView().byId("comb");
+			var isEnabled = this.getView().byId("combo");
 
 			this.getView().byId("CPF").setValue("");
 			this.getView().byId("nome").setValue("");
-			this.getView().byId("comb").setSelectedKey("");
+			this.getView().byId("combo").setSelectedKey("");
 			oViewModel.setProperty("/tipoAtendi", []);
 
 			isEnabled.setEnabled(false);
@@ -230,8 +276,9 @@ sap.ui.define([
 		},
 
 		onExit: function() {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("inicial_view");
 			clearTimeout(TimeOut);
-			this.limpaCampos();
 		}
 	});
 });

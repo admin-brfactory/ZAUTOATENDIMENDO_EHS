@@ -8,19 +8,15 @@
 					<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="80%">
 						<VBox justifyContent="Center">
 							<HBox>
-								<Label text="{i18n>lblSenhaaqui}" class="breathe"/>
+								<Label text="{i18n>lblSenhaaqui}" width="100%" class="breathe"/>
 							</HBox>
 							<HBox>
 								<VBox width="25%"/>
-								<Button text="{i18n>lblIniciar}" width="330%" class="bottonInicial" press="onPress"/>
+								<Button text="{i18n>lblIniciar}" type="Emphasized" width="330%" class="bottonInicial" press="onPress"/>
 							</HBox>
 						</VBox>
 					</FlexBox>
 				</content>
-				<!--<Popover showHeader="false" placement="escolhaCentro">-->
-				<!--	<Button text="Centro Medico Tubarão" press="Tubarao"/>-->
-				<!--	<Button text="Centro Medico Vega" press="Vega"/>-->
-				<!--</Popover>-->
 			</Page>
 		</pages>
 	</App>

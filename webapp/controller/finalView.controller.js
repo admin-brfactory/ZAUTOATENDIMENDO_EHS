@@ -11,9 +11,11 @@ sap.ui.define([
 
 		onInit: function() {
 			var oViewModel = new JSONModel({
-
+				mensagem: ""
 			});
-
+			this.oRouter = this.getOwnerComponent().getRouter();
+			this.oRouter.getRoute("final_view").attachPatternMatched(this.getMensagem, this);
+			this.limpaTimeOut();
 			this.getView().setModel(oViewModel, "finalModel");
 			this.initTimeOut();
 		},
@@ -27,13 +29,17 @@ sap.ui.define([
 
 		limpaTimeOut: function() {
 			clearTimeout(TimeOut);
-			this.initTimeOut();
 		},
 
 		onPress: function(oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			this.limpaTimeOut();
 			oRouter.navTo("inicial_view");
+		},
+		
+		getMensagem: function(){
+			var oViewModel = this.getView().getModel("finalModel");
+			oViewModel.setProperty("/mensagem",this.getOwnerComponent().getModel("GlobalModel").getProperty("/mensagemSucess"));
 		}
 
 	});

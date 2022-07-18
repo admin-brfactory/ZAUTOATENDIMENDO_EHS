@@ -17,23 +17,14 @@ sap.ui.define([
 
 		onInit: function() {
 			var oViewModel = new JSONModel({
-
 				Valor: [],
 				centros: []
 
 			});
-
+			
 			this.getView().setModel(oViewModel, "InicialModel");
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this._loadCentro();
-			this.initTimeOut();
-		},
-		initTimeOut: function() {
-			var oRouter = this.getOwnerComponent().getRouter();
-
-			TimeOut = setTimeout(function() {
-				oRouter.navTo("inicial_view");
-			}, 60000);
 		},
 
 		limpaTimeOut: function() {
@@ -41,7 +32,14 @@ sap.ui.define([
 		},
 
 		onPress: function(oEvent) {
+			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed", this.getView().byId('listCentro'));
 			var oRouter = this.getOwnerComponent().getRouter();
+			
+			if(CentroMedico == "") {
+				MessageToast.show("Selecione um centro médico");
+				return;
+			}
+			
 			clearTimeout(TimeOut);
 			this.limpaTimeOut();
 			oRouter.navTo("tipo_colaborador_view");
@@ -72,7 +70,7 @@ sap.ui.define([
 			var centroMedico = "";
 			
 			if(selectedCentro == null){
-				console.log("Selecione Centro Médico");
+				MessageToast.show("Selecione um centro médico");
 				return;
 			}
 			

@@ -21,7 +21,8 @@ sap.ui.define([
 				Cpff: "",
 				TipoAtendime: [],
 				Atend: [],
-				centroMedico: []
+				centroMedico: [],
+				isEnabled: false
 			});
 			this.getView().setModel(oViewModel, "matriculaModel");
 			this.initTimeOut();
@@ -33,8 +34,9 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 
 			TimeOut = setTimeout(function() {
+				this.limpaCampos();
 				oRouter.navTo("inicial_view");
-			}, 60000);
+			}.bind(this), 120000);
 		},
 
 		limpaTimeOut: function() {
@@ -50,19 +52,20 @@ sap.ui.define([
 			var SelectNome = this.getView().byId("nome").getSelectedKey();
 			var isEnabled = this.getView().byId("comb");
 			var CriarArcelo = this.getView().byId("CriarArcel");
-			var a = false;
+			var habilitarCampos = false;
 
-			if (valorMatricula == "") {
-				MessageBox.error("Favor preencher uma Matricula!");
+			if (valorMatricula == "" || SelectNome == "") {
+				MessageBox.error("Favor preencher todos os campos!");
 				return;
 			}
 
 			this.getTipoAtendi();
 			this.limpaTimeOut();
-			
+
+			oViewModel.setProperty("/isEnabled", true);
 			clearTimeout(TimeOut);
-			isEnabled.setEnabled(!a);
-			CriarArcelo.setEnabled(!a);
+			isEnabled.setEnabled(!habilitarCampos);
+			CriarArcelo.setEnabled(!habilitarCampos);
 
 		},
 
@@ -75,16 +78,14 @@ sap.ui.define([
 
 			this.getTipoAtendi();
 			this.limpaTimeOut();
-
 		},
 
 		getTipoAtendi: function(sCPF, sCentroMedico) {
 			var oViewModel = this.getView().getModel("matriculaModel");
 			var oModel = this.getOwnerComponent().getModel();
 			var cpf = this.getView().byId("nome").getSelectedKey();
-			var cpff = "";
-			cpff = cpf;
-			oViewModel.setProperty("/Cpff", cpff);
+			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed");
+			oViewModel.setProperty("/Cpff", cpf);
 
 			sap.ui.core.BusyIndicator.show();
 			oModel.callFunction(
@@ -92,18 +93,28 @@ sap.ui.define([
 					method: "GET",
 					urlParameters: {
 						CPF: cpf,
-						CENTROMEDICO: "50041620"
+						CENTROMEDICO: CentroMedico
 					},
 					success: function(oData, response) {
 						sap.ui.core.BusyIndicator.hide();
 						var resultadooData = oData.results;
-						oViewModel.setProperty("/TipoAtendime", resultadooData);
-						oViewModel.setProperty("/Atend", resultadooData);
-						console.log(oData);
-					},
+						if (oData.results.length > 1) {
+							oViewModel.setProperty("/TipoAtendime", resultadooData);
+							oViewModel.setProperty("/Atend", resultadooData);
+							this.getView().byId("comb").setSelectedKey("");
+						} else {
+							oViewModel.setProperty("/TipoAtendime", resultadooData);
+							oViewModel.setProperty("/Atend", resultadooData);
+							this.getView().byId("comb").setSelectedKey(oData.results[0].TIPOATEND);
+						}
+					}.bind(this),
 					error: function(oError) {
 						sap.ui.core.BusyIndicator.hide();
-						console.log(oError);
+						var erro = JSON.parse(oError.responseText);
+						var erroMessage = erro.error.message.value;
+						MessageToast.show(erroMessage, {
+							duration: 7000
+						});
 					}
 				});
 		},
@@ -132,7 +143,7 @@ sap.ui.define([
 					}.bind(this),
 				});
 			}
-			
+
 			clearTimeout(TimeOut);
 			this.limpaTimeOut();
 
@@ -150,8 +161,9 @@ sap.ui.define([
 			var AtendFilter = dadosAtend.filter(val => val.TIPOATEND == tipodeAtendimento);
 			var Atend = AtendFilter[0].ATEND;
 			var cpff = oViewModel.getProperty("/Cpff");
-			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed", this.getView().byId('listCentro'));
-			
+			var CentroMedico = this.getOwnerComponent().getModel("GlobalModel").getProperty("/CentroMed");
+
+			sap.ui.core.BusyIndicator.show();
 			oModel.callFunction(
 				"/GerarSenha", {
 					method: "GET",
@@ -163,12 +175,14 @@ sap.ui.define([
 						TIPOATEND: tipodeAtendimento
 					},
 					success: function(oData, response) {
-						console.log(oData);
+						sap.ui.core.BusyIndicator.hide();
+						oGlobalModel.setProperty("/mensagemSucess", oData.Texto);
 						this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 						oRouter.navTo('final_view');
 						this.limpaCampos();
 					}.bind(this),
 					error: function(oError) {
+						sap.ui.core.BusyIndicator.hide();
 						var erro = JSON.parse(oError.responseText);
 						var erroMessage = erro.error.message.value;
 						MessageToast.show(erroMessage, {
@@ -176,8 +190,8 @@ sap.ui.define([
 						});
 					}
 				});
-				
-				this.limpaCampos();
+
+			this.limpaCampos();
 		},
 
 		onCancelar: function(oEvent) {
@@ -213,19 +227,31 @@ sap.ui.define([
 		chamadaNome: function() {
 			var oViewModel = this.getView().getModel("matriculaModel");
 			var oModel = this.getOwnerComponent().getModel();
+			var matricula = this.getView().byId("matric").getValue();
+			var isEnabled = oViewModel.getProperty("/isEnabled");
+			var aFilters = [
+				new Filter("Pernr", FilterOperator.EQ, matricula)
+			];
 
 			sap.ui.core.BusyIndicator.show();
 			oModel.read("/zgeehst097Set", {
+				filters: aFilters,
 				success: function(oData) {
 					sap.ui.core.BusyIndicator.hide();
-					var resultadooData = oData.results;
-					oViewModel.setProperty("/PegaLista", resultadooData);
-					console.log(oData);
+					var resultadoData = oData.results;
+					oViewModel.setProperty("/PegaLista", resultadoData);
+					if (isEnabled) {
+						this.getTipoAtendi();
+					}
 				}.bind(this),
 
 				error: function(oError) {
 					sap.ui.core.BusyIndicator.hide();
-					console.log(oError);
+					var erro = JSON.parse(oError.responseText);
+					var erroMessage = erro.error.message.value;
+					MessageToast.show(erroMessage, {
+						duration: 7000
+					});
 				}.bind(this)
 			});
 		},
@@ -248,8 +274,9 @@ sap.ui.define([
 		},
 
 		onExit: function() {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("inicial_view");
 			clearTimeout(TimeOut);
-			this.limpaCampos();
 		}
 	});
 });

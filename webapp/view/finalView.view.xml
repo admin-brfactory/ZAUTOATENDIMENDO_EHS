@@ -5,29 +5,17 @@
 		<content>
 			<OverflowToolbar id="otb1" class="finalOver">
 				<Label width="41%"/>
-				<Label text="Concluido" class="lblConclu"/>
+				<Label text="{i18n>lblConcluido}" class="lblConclu"/>
 				<ToolbarSpacer/>
 			</OverflowToolbar>
 			<VBox class="sapUiLargeMargin">
 				<HBox>
-					<Label
-						text="{i18n>frase1}"/>
-				</HBox>
-				<HBox height="0.75rem"/>
-				<HBox>
-					<Label text="{i18n>frase2}"/>
-				</HBox>
-				<HBox>
-					<Label text="{i18n>frase3}"/>
-				</HBox>
-				<HBox height="0.75rem"/>
-				<HBox>
-					<Label text="{i18n>frase4}"/>
+					<Label wrapping="true" text="{finalModel>/mensagem}"/>
 				</HBox>
 			</VBox>
 			<HBox height="3rem"/>
 			<VBox alignItems="Center" justifyContent="End">
-			<Button text="{i18n>lblOK}" width="20rem" class="TextStyle" press="onPress"/>
+			<Button text="{i18n>lblOK}" type="Emphasized" width="20rem" class="TextStyle" press="onPress"/>
 			</VBox>
 		</content>
 	</Page>

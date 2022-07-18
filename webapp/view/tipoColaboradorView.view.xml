@@ -8,17 +8,17 @@
 			<Label text="{i18n>lblautoAtendimento}" class="LabelAuto"/>
 			<ToolbarSpacer/>
 		</OverflowToolbar>
-		<FlexBox class="sapUiLargeMargin" alignItems="Center" justifyContent="Center" height="50%">
-			<VBox justifyContent="Center">
-				<HBox>
-					<Button text="{i18n>lblSouColaboradordaArcelorMitall}" width="40rem" class="bottonColaborador" press="onColaboradorPress"/>
-				</HBox>
+		<lf:SimpleForm>
+			<VBox class="sapUiLargeMarginTop">
+				<VBox>
+					<Button text="{i18n>lblSouColaboradordaArcelorMittal}" type="Emphasized" width="100%" class="bottonColaborador" press="onColaboradorPress"/>
+				</VBox>
 				<VBox class="sapUiLargeMargin"/>
-				<HBox>
-					<VBox/>
-					<Button text="{i18n>lblNaoSouColaboradordaArcelorMitall}" width="40rem" class="bottonNaoColaborador" press="onNaoColaboradorPress"/>
-				</HBox>
+				<VBox>
+					<Button text="{i18n>lblNaoSouColaboradordaArcelorMittal}" type="Emphasized" width="100%" class="bottonNaoColaborador"
+						press="onNaoColaboradorPress"/>
+				</VBox>
 			</VBox>
-		</FlexBox>
+		</lf:SimpleForm>
 	</Page>
 </mvc:View>

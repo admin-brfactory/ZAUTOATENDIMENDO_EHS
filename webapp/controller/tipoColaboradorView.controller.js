@@ -24,7 +24,7 @@ sap.ui.define([
 
 			TimeOut = setTimeout(function() {
 				oRouter.navTo("inicial_view");
-			}, 60000);
+			}, 120000);
 		},
 
 		limpaTimeOut: function() {
@@ -50,7 +50,6 @@ sap.ui.define([
 
 		onExit: function() {
 			clearTimeout(TimeOut);
-			this.limpaCampos();
 		}
 
 	});

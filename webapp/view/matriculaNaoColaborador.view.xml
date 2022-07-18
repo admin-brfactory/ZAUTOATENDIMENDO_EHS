@@ -9,40 +9,26 @@
 			<ToolbarSpacer/>
 		</OverflowToolbar>
 		<Label text="{i18n>CPF}" class="sapUiSmallMargin"/>
-		<l:Grid>
-			<HBox alignItems="Center">
-				<Input type="Number" placeholder="{i18n>lblCPF}" width="100%" id="CPF" liveChange="checaNumerico('CPF', '11'),limpaTimeOut"
+		<lf:SimpleForm>
+			<Input type="Number" placeholder="{i18n>lblCPF}" width="100%" id="CPF" liveChange="checaNumerico('CPF', '11'),limpaTimeOut"
 					class="inputMatricula"/>
-				<layoutData>
-					<l:GridData span="XL12 L12 M12 S12"/>
-				</layoutData>
-				<VBox width="1%"/>
-				<Input placeholder="{i18n>lblNome}" id="nome" width="205%" class="inputMatricula" value="" liveChange="checaNome('nome'),limpaTimeOut"/>
-				<layoutData>
-					<l:GridData span="XL12 L12 M12 S12"/>
-				</layoutData>
-				<VBox width="17rem"/>
-				<Button text="{i18n>lblConfirmar}" width="105%" press="onValidaPress" class="bottonconfirmarmatri"/>
-			</HBox>
-		</l:Grid>
+				<Input placeholder="{i18n>lblNome}" id="nome" width="100%" class="inputMatricula" value="{cpfModel>/PegaLista}"
+					liveChange="checaNome('nome'),limpaTimeOut"/>
+				<Button text="{i18n>lblConfirmar}" type="Emphasized" width="100%" press="onValidaPress" class="bottonconfirmarmatri"/>
+		</lf:SimpleForm>
 		<Label text="{i18n>lblaAtendimento}" class="sapUiSmallMargin"/>
-		<l:Grid>
-			<HBox alignItems="Center">
-				<ComboBox items="{cpfModel>/tipoAtendi}" placeholder="{i18n>lbltiposdeAtendimento}" width="26rem" enabled="false" id="comb" class="inputSelected"
-					change="limpaTimeOut">
-					<core:Item key="{cpfModel>TIPOATEND}" text="{cpfModel>TIPOATENDDESC}"/>
-				</ComboBox>
-				<layoutData>
-					<l:GridData span="XL12 L12 M12 S12"/>
-				</layoutData>
-				<VBox width="1rem"/>
-				<Button text="{i18n>lblCriarAtendimento}" class="bottonCriarAtend" width="175%" press="onCriarAtendiPress" id="CriarArcel" enabled="false"/>
-			</HBox>
-		</l:Grid>
+		<lf:SimpleForm>
+			<ComboBox items="{cpfModel>/tipoAtendi}" placeholder="{i18n>lbltiposdeAtendimento}" width="100%" enabled="false" id="combo"
+				class="inputSelected" change="limpaTimeOut">
+				<core:Item key="{cpfModel>TIPOATEND}" text="{cpfModel>TIPOATENDDESC}"/>
+			</ComboBox>
+			<Button text="{i18n>lblCriarAtendimento}" type="Emphasized" class="bottonCriarAtend" width="100%" press="onCriarAtendiPress" id="CriarArcel"
+				enabled="false"/>
+		</lf:SimpleForm>
 		<footer class="footer">
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button text="{i18n>lblCancelar}" class="bottonCancelar" press="onCancelar" id="ArclCancelar" width="31rem"/>
+				<Button text="{i18n>lblCancelar}" class="bottonCancelar" type="Emphasized" press="onCancelar" id="ArclCancelar" width="50%"/>
 			</OverflowToolbar>
 		</footer>
 	</Page>

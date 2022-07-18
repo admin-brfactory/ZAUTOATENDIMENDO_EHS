@@ -5,16 +5,57 @@
 }
 
 .TelatipoColaboradorView {
-    background-color: ##ffffff !important;
+    background-color: #ffffff !important;
 }
 
 .sapMSlt>.sapMSltLabel {
     line-height: 4rem;
 }
 
+.sapUiSizeCompact .sapMTB {
+    height: 5rem;
+}
+
 .sapMSltArrow {
     line-height: 4rem;
 }
+.sapUiSizeCompact .sapMInputBaseContentWrapper {
+    height: 4.5rem;
+}
+.sapUiSizeCompact .sapMSlt>.sapMSltLabel, .sapUiSizeCompact .sapMSlt>.sapMSltArrow {
+    line-height: 4rem;
+}
+.sapUiSizeCompact .sapMBtnInner {
+    height: 4.5rem;
+    min-width: 2rem;
+}
+
+.sapUiSizeCompact .sapMPageHeader .sapMIBar, .sapUiSizeCompact .sapMPageFooter .sapMIBar {
+    height: 4rem;
+}
+
+.sapUiSizeCompact .sapMBtn {
+    height: 2rem;
+    padding: 0.1875rem 0;
+    height: revert;
+}
+
+.sapMIBar-CTX .sapMBtnInner, .sapMBar .sapMBtnInner, .sapMHeader-CTX .sapMBtnInner, .sapMFooter-CTX .sapMBtnInner {
+    background: transparent;
+    border-color: transparent;
+    height: 2.5rem !important;
+}
+
+.sapUiSizeCompact .sapMBtnContent {
+    line-height: 100%;
+    align-items: Center;
+}
+
+.sapMBtnContent {
+    line-height: 2.125rem;
+    align-self: center;
+}
+
 
 .sapMSlt>.sapMSltLabel {
     position: absolute;
@@ -38,7 +79,6 @@
 .sapMBarLeft, .sapMBarRight, .sapMBarPH {
     height: 2.75rem;
     line-height: .75rem;
-    m: ;
 }
 
 .sapMTB {
@@ -53,7 +93,7 @@
     background-image: none;
     border-top: 1px solid #d9d9d9;
     box-shadow: none;
-        height: 2.75rem;
+    height: 2.75rem;
 }
 
 .sapMIBar.sapMHeader-CTX {
@@ -62,7 +102,7 @@
     filter: none;
     background-image: none;
     height: 2.75rem;
-    line-height: 5.75rem;
+    /*line-height: 5.75rem;*/
 }
 
 .sapMSelectListItemBase {
@@ -79,26 +119,15 @@
 
 .sapMSuggestionsPopover .sapMListUl>.sapMLIB {
     height: 6rem;
-    line-height: 5.75rem;
+    line-height: 1.75rem;
 }
 
 .select {
-    /*    order: 0;*/
-    /*    flex-grow: 4;*/
-    /*    flex-shrink: 0;*/
-    /*    flex-basis: auto;*/
-    /*    min-height: auto;*/
-    /*    min-width: auto;*/
     width: 25rem;
-    height: 4.7rem !important;
+    height: 4.5rem !important;
     font-size: 2rem;
-    /*    text-align: center !important;*/
-    /*    position: relative !important;*/
     border-radius: 0.5rem !important;
-    /*    border: 1rem #ff7100 !important;*/
-    /*    line-height: 2.5rem !important;*/
-    /*    background-color: #ffffff !important;*/
-    /*    color: #ff7100 !important;*/
+
 }
 
 .TextStyle {
@@ -117,73 +146,83 @@
     color: #ffffff !important;
     border: 0.0625rem solid #ff7100 !important;
     border-radius: 0.5rem !important;
+    height: 4.5rem !important;
 }
 
 .bottonInicial {
     height: 5rem !important;
     font-size: 3rem !important;
-    background-color: #ff7100 !important;
+    background-color: #18191A !important;
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
+    line-height: 4.5rem !important;
 }
 
 .bottonColaborador {
     height: 6rem !important;
     font-size: 3rem !important;
-    background-color: #ff7100 !important;
+    background-color: #ffffff !important;
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
+    line-height: 4.5rem !important;
 }
 
 .bottonNaoColaborador {
     height: 6rem !important;
     font-size: 3rem !important;
-    background-color: #ff7100 !important;
+    background-color: #ffffff !important;
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
+    line-height: 4.5rem !important;
+}
+
+.sapMBtn {
+    height: 2.5rem;
 }
 
 .bottonCancelar {
-    height: 3rem !important;
     font-size: 3rem !important;
-    background-color: #ff7100 !important;
+    background-color: #ffffff !important;
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
+    line-height: 4.5rem !important;
+    height: revert;
 }
 
 .bottonCriarAtend {
     height: 4.8rem !important;
     font-size: 3rem !important;
-    background-color: #ff7100 !important;
+    background-color: #ffffff !important;
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
+    line-height: 4.5rem !important;
 }
 
 .bottonconfirmarmatri {
     height: 4.8rem !important;
     font-size: 3rem !important;
-    background-color: #ff7100 !important;
+    background-color: #ffffff !important;
     color: #ffffff !important;
     border: 0.0625rem #ff7100 !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
-    line-height: 2.5rem !important;
+    line-height: 4.5rem !important;
 }
 
 .sapMFlexItem {
@@ -191,7 +230,7 @@
 }
 
 .inputMatricula {
-    height: 4.8rem !important;
+    height: 4.5rem !important;
     text-align: center !important;
     position: center !important;
     border-radius: 0.5rem !important;
@@ -202,7 +241,7 @@
 }
 
 .inputSelected {
-    height: 4.7rem !important;
+    height: 4.5rem !important;
     text-align: center !important;
     position: relative !important;
     border-radius: 0.5rem !important;
@@ -230,6 +269,7 @@
 .lblConclu {
     text-align: left;
     color: white;
+    height: 2rem;
 }
 
 .sapMInputBaseIcon:active {
